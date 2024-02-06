@@ -126,7 +126,7 @@
                                 <select name="country" class="form-select" aria-label="Default select example">
                                 <option selected>Select Country</option>
                                 @foreach($country as $countrys)
-                                <option value="{{$countrys->name}}">{{$countrys->name}}</option>
+                                <option value="{{$countrys->country_name}}">{{$countrys->country_name}}</option>
                                 @endforeach
                                </select>
                                   @error('country')
