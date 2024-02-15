@@ -310,21 +310,23 @@ class InstitutionController extends Controller
                 return redirect()->route('/institution/login');
             }
             $id = Session::get('institution_id');
+            
             $institution = addInstitution::where('institution_id', $id)->first();
             if ($institution) {
                 $institution_detail_id = $institution->id;
             } else {
                 $institution_detail_id = '0';
             }
+            
             $branch = addBranch::where('institution_detail_id', $institution_detail_id)->get();
             $fees = DB::table('course_fees')
                 ->join('institution_detail', 'institution_detail.id', '=', 'course_fees.institution_detail_id')
                 ->select('course_fees.*', 'institution_detail.universirty_name')->where('institution_detail_id', $institution_detail_id)
                 ->get();
 
-            $requirement = DB::table('course_requirements')
-                ->join('institution_detail', 'institution_detail.id', '=', 'course_requirements.institution_detail_id')
-                ->select('course_requirements.*', 'institution_detail.universirty_name')->where('institution_detail_id', $institution_detail_id)
+            $requirement = DB::table('course_requirement')
+                ->join('institution_detail', 'institution_detail.id', '=', 'course_requirement.institution_detail_id')
+                ->select('course_requirement.*', 'institution_detail.universirty_name')->where('institution_detail_id', $institution_detail_id)
                 ->get();
 
             $course = addCoursesModel::where('institution_detail_id', $institution_detail_id)->get();
@@ -1610,7 +1612,7 @@ class InstitutionController extends Controller
         } else {
             $id = Session::get('institution_id');
            
-            $institution = addInstitution::where('id', $id)->first();
+            $institution = addInstitution::where('institution_id', $id)->first();
             
             if ($institution) {
                 $student = StudentModel::where('institution_id', $institution->id)->get();

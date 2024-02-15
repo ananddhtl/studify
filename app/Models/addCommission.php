@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class addCommission extends Model
 {
     use HasFactory;
-    protected $table = 'addCommission';
+    protected $table = 'commissions';
     protected $fillable = [
         'institution_id',
         'degree',
