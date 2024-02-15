@@ -66,7 +66,7 @@ class InstitutionController extends Controller
             $id = Session::get('institution_id');
             $idd = addInstitution::where('institution_id', $id)->first();
             if ($idd) {
-                $studentcount = StudentModel::where('insitution_id', $idd->id)->get();
+                $studentcount = StudentModel::where('institution_id', $idd->id)->get();
                 $countstudent = $studentcount->count();
             } else {
                 $countstudent = '0';
@@ -78,7 +78,7 @@ class InstitutionController extends Controller
                 $countcourse = '0';
             }
             if ($idd) {
-                $agentcount = StudentModel::where('insitution_id', $idd->id)->get();
+                $agentcount = StudentModel::where('institution_id', $idd->id)->get();
                 $listImages = array();
                 foreach ($agentcount as $value) {
                     array_push($listImages, $value->agent_id);
@@ -387,6 +387,7 @@ class InstitutionController extends Controller
         $json = json_encode($request->intakes);
 
         $duration = $request->duration;
+
 
         $user = addCoursesModel::create(['institution_id' => $institution_id, 'institution_detail_id' => $institution_detail_id, 'branch_id' => $branch_id, 'type' => $type, 'c_name' => $course_name, 'AOS' => $aos, 'intake' => $json, 'duration' => $duration]);
         if ($user) {
@@ -1608,9 +1609,11 @@ class InstitutionController extends Controller
             return redirect()->route('/institution/login');
         } else {
             $id = Session::get('institution_id');
-            $institution = addInstitution::where('institution_id', $id)->first();
+           
+            $institution = addInstitution::where('id', $id)->first();
+            
             if ($institution) {
-                $student = StudentModel::where('insitution_id', $institution->id)->get();
+                $student = StudentModel::where('institution_id', $institution->id)->get();
             } else {
                 $student = array();
             }
@@ -1685,8 +1688,9 @@ class InstitutionController extends Controller
             }
             $id = Session::get('institution_id');
             $institution = addInstitution::where('institution_id', $id)->first();
+            
             if ($institution) {
-                $student = StudentModel::where('insitution_id', $institution->id)->where('student_status', '3')->get();
+                $student = StudentModel::where('institution_id', $institution->id)->where('student_status', '3')->get();
             } else {
                 $student = array();
             }
