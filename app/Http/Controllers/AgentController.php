@@ -109,12 +109,12 @@ class AgentController extends Controller
             }
         }
 
-        $package = AgentModel::where('email', $request->email)->first();
-        if ($package) {
-            if ($package->package_status == '0') {
-                return back()->with('fail', 'Please buy package first');
-            }
-        }
+        // $package = AgentModel::where('email', $request->email)->first();
+        // if ($package) {
+        //     if ($package->package_status == '0') {
+        //         return back()->with('fail', 'Please buy package first');
+        //     }
+        // }
 
         $activestatus = AgentModel::where('email', $request->email)->first();
         if ($activestatus) {

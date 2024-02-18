@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Studify</title>
-   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet" href="{{asset('assets/style.css')}}">
-    <link rel="icon" type="{{asset('assets/image/png')}}" sizes="60x60" href="{{asset('assets/images/fav.png')}}">
-<link rel="icon" type="{{asset('assets/image/png')}}" sizes="96x96" href="{{asset('assets/images/fav.png')}}">
-<link rel="icon" type="{{asset('assets/image/png')}}" sizes="60x60" href="{{asset('assets/images/fav.png')}}">
-   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+    <title>Studify</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/style.css') }}">
+    <link rel="icon" type="{{ asset('assets/image/png') }}" sizes="60x60"
+        href="{{ asset('assets/images/fav.png') }}">
+    <link rel="icon" type="{{ asset('assets/image/png') }}" sizes="96x96"
+        href="{{ asset('assets/images/fav.png') }}">
+    <link rel="icon" type="{{ asset('assets/image/png') }}" sizes="60x60"
+        href="{{ asset('assets/images/fav.png') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,600;0,700;0,800;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -45,13 +52,13 @@
                         <div class="col-sm-8 col-md-12">
                             <div class="parallax mb-md-0 mb-4" style="transform: translate3d(0px, 0px, 0px) rotate(0.0001deg); transform-style: preserve-3d; backface-visibility: hidden; pointer-events: none;">
                                 <div class="parallax-layer" data-depth="-0.19" style="z-index: 3; transform: translate3d(-10.6px, 7.6px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: relative; display: block; left: 0px; top: 0px;">
-                                    <img src="{{asset('assets/images/banner-1.svg')}}" alt="Layer">
+                                    <img src="{{ asset('assets/images/banner-1.svg') }}" alt="Layer">
                                 </div>
                                 <div class="parallax-layer" data-depth="-0.35" style="z-index: 4; transform: translate3d(-19.5px, 14px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: absolute; display: block; left: 0px; top: 0px;">
-                                    <img src="{{asset('assets/images/image1.svg')}}" alt="Layer">
+                                    <img src="{{ asset('assets/images/image1.svg') }}" alt="Layer">
                                 </div>
                                 <div class="parallax-layer" data-depth="-0.25" style="z-index: 2; transform: translate3d(-13.9px, 10px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: absolute; display: block; left: 0px; top: 0px;">
-                                    <img src="{{asset('assets/images/image-2.svg')}}" alt="Layer">
+                                    <img src="{{ asset('assets/images/image-2.svg') }}" alt="Layer">
                                 </div>
                             </div>
                         </div>
@@ -69,22 +76,22 @@
                     <h3 class="h3 text-light-C0CCF9 my-auto">Door to your future </h3>
                 </div>
                 <div class=" col-lg-3 col-md-4 col-sm-4 col-4 px-0 text-md-end text-sm-center">
-                    <a href="{{url('student')}}" class="stake-cta student-cta">
-                        <img src="{{asset('assets/images/student-icon-circle.svg')}}" alt="Student" class="me-1 d-inline-block">
+                    <a href="{{ url('student') }}" class="stake-cta student-cta">
+                        <img src="{{ asset('assets/images/student-icon-circle.svg') }}" alt="Student" class="me-1 d-inline-block">
                         <h5 class="mb-0 text-light d-inline-block align-middle">Student <i class="ri-arrow-right-line  align-middle"></i>
                         </h5>
                     </a>
                 </div>
                 <div class=" col-lg-3 col-md-4 col-sm-4 col-4 px-0">
-                    <a href="{{url('agent')}}" class="stake-cta counsellor-cta">
-                        <img src="{{asset('assets/images/counselor-icon-circle.svg')}}" alt="Counselor" class="me-1 d-inline-block">
+                    <a href="{{ url('agent') }}" class="stake-cta counsellor-cta">
+                        <img src="{{ asset('assets/images/counselor-icon-circle.svg') }}" alt="Counselor" class="me-1 d-inline-block">
                         <h5 class="mb-0 text-light d-inline-block  align-middle">Counselor <i class="ri-arrow-right-line  align-middle"></i>
                         </h5>
                     </a>
                 </div>
                 <div class=" col-lg-3 col-md-4 col-sm-4 col-4 px-0 text-md-start  text-sm-center">
-                    <a href="{{url('institution')}}" class="stake-cta institute-cta">
-                        <img src="{{asset('assets/images/university-icon-circle.svg')}}" alt="university" class="me-1 d-inline-block">
+                    <a href="{{ url('institution') }}" class="stake-cta institute-cta">
+                        <img src="{{ asset('assets/images/university-icon-circle.svg') }}" alt="university" class="me-1 d-inline-block">
                         <h5 class="mb-0 text-light d-inline-block align-middle">Institution <i class="ri-arrow-right-line  align-middle"></i>
                         </h5>
                     </a>
@@ -104,13 +111,13 @@
                 <!-- Images binded to accordion -->
                 <div class="binded-content">
                     <div id="identity" class="binded-item active">
-                        <img class="d-block" src="{{asset('assets/images/1EB0FF3F-53BD-4B2D-A778-EDE4BA9A7F5F.jpeg')}}" alt="Identity Design &amp; Illustration">
+                        <img class="d-block" src="{{ asset('assets/images/1EB0FF3F-53BD-4B2D-A778-EDE4BA9A7F5F.jpeg') }}" alt="Identity Design &amp; Illustration">
                     </div>
                     <div id="web" class="binded-item">
-                        <img class="d-block" src="{{asset('assets/images/student-login-illustration.png')}}" alt="UX / UI Design">
+                        <img class="d-block" src="{{ asset('assets/images/student-login-illustration.png') }}" alt="UX / UI Design">
                     </div>
                     <div id="photography" class="binded-item">
-                        <img class="d-block" src="{{asset('assets/images/student-login-illustration.png')}}" alt="Photography &amp; Video Production">
+                        <img class="d-block" src="{{ asset('assets/images/student-login-illustration.png') }}" alt="Photography &amp; Video Production">
                     </div>
                 </div>
             </div>
@@ -190,14 +197,14 @@
             <div class="col-lg-4 col-sm-6 col-12 mb-sm-grid-gutter mb-3">
                 <div class="card card-hover border-15 border-red shadow-red h-100 py-2 text-center">
                     <div class="card-header pb-0 border-0 text-center">
-                        <img src="{{asset('assets/images/student-block-icon.svg')}}" alt="">
+                        <img src="{{ asset('assets/images/student-block-icon.svg') }}" alt="">
                         <h4 class="h3 mb-1 mt-3">Students</h4>
                     </div>
                     <div class="card-body">
                         <p>Choose your preferred course, destination &amp; institution at your fingertip with Studify.</p>
                     </div>
                     <div class="card-footer border-0">
-                        <a href="{{url('member/register')}}" class="btn btn-outline-danger btn-hover-shadow rounded-pill d-block w-100">Register Now</a>
+                        <a href="{{ url('member/register') }}" class="btn btn-outline-danger btn-hover-shadow rounded-pill d-block w-100">Register Now</a>
                     </div>
                 </div>
             </div>
@@ -205,14 +212,14 @@
             <div class="col-lg-4 col-sm-6 col-12 mb-sm-grid-gutter mb-3">
                 <div class="card card-hover border-15 border-green shadow-green h-100 py-2 text-center">
                     <div class="card-header pb-0 border-0 text-center">
-                        <img src="{{asset('assets/images/counselor-block-icon.svg')}}" alt="">
+                        <img src="{{ asset('assets/images/counselor-block-icon.svg') }}" alt="">
                         <h4 class="h3 mb-1 mt-3">Agents &amp; Counselor</h4>
                     </div>
                     <div class="card-body">
                         <p>Studify simplifies your entire application process and communication with your students</p>
                     </div>
                     <div class="card-footer border-0">
-                        <a href="{{url('agent')}}" class="btn btn-outline-success btn-hover-shadow rounded-pill d-block w-100">How we can assist you…</a>
+                        <a href="{{ url('agent') }}" class="btn btn-outline-success btn-hover-shadow rounded-pill d-block w-100">How we can assist you…</a>
                     </div>
                 </div>
             </div>
@@ -220,14 +227,14 @@
             <div class="col-lg-4 col-sm-12 col-12 mb-sm-grid-gutter mb-3">
                 <div class="card card-hover border-15 border-blue shadow-blue h-100 py-2 text-center">
                     <div class="card-header pb-0 border-0 text-center">
-                        <img src="{{asset('assets/images/univerity-block-icon.svg')}}" alt="">
+                        <img src="{{ asset('assets/images/univerity-block-icon.svg') }}" alt="">
                         <h4 class="h3 mb-1 mt-3">Institutions</h4>
                     </div>
                     <div class="card-body">
                         <p>Join one of the largest platform and promote your institute to the world.</p>
                     </div>
                     <div class="card-footer border-0">
-                        <a href="{{url('institution')}}" class="btn btn-outline-primary btn-hover-shadow rounded-pill d-block w-100">Access
+                        <a href="{{ url('institution') }}" class="btn btn-outline-primary btn-hover-shadow rounded-pill d-block w-100">Access
                             How we assist institutes…</a>
                     </div>
                 </div>
@@ -240,9 +247,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-12 me-auto mb-md-0 mb-4 pb-md-0 pb-3">
-                    <img src="{{asset('assets/images/5CBA9E98-2238-4408-B697-71132C6963D6.jpeg')}}" alt="About" class="d-block mx-auto">
+                    <img src="{{ asset('assets/images/5CBA9E98-2238-4408-B697-71132C6963D6.jpeg') }}" alt="About" class="d-block mx-auto">
                     <div class="expert-cta mt-5 mx-auto text-center">
-                        <p class="display-6">Have a Questions? <a href="{{url('contact')}}" class="btn btn-primary rounded-pill">Contact our
+                        <p class="display-6">Have a Questions? <a href="{{ url('contact') }}" class="btn btn-primary rounded-pill">Contact our
                                 Support Team</a></p>
                     </div>
                 </div>
@@ -260,7 +267,7 @@
                         </li>
                     </ul>
                     <div class="d-block mt-3 align-items-left">
-                        <a class="ab-button" href="{{url('contact')}}" role="button"><i class="ri-arrow-right-line"></i>
+                        <a class="ab-button" href="{{ url('contact') }}" role="button"><i class="ri-arrow-right-line"></i>
                             Other remains the same</a>
                     </div>
                 </div>
@@ -278,10 +285,10 @@
                 <div class="row">
                     <div class="col-md-12 col-12">
                         
-                        <video class="video" poster="{{asset('assets/images/Screenshot44.png')}}" controls="aap" id="homecent"> 
+                        <video class="video" poster="{{ asset('assets/images/Screenshot44.png') }}" controls="aap" id="homecent"> 
         <source src="http://54.83.117.81/assets/images/production ID_4497323.mp4" type="vedio/mp4">
-                                                            <source src="{{asset('assets/images/production ID_4497323.mp4')}}" type="video/ogg">
-                                                            <source src="{{asset('assets/images/production ID_4497323.m4v')}}" type="video/mp4">
+                                                            <source src="{{ asset('assets/images/production ID_4497323.mp4') }}" type="video/ogg">
+                                                            <source src="{{ asset('assets/images/production ID_4497323.m4v') }}" type="video/mp4">
     </video>
                     </div>
                     </div>
@@ -289,7 +296,7 @@
             <!-- blog -->
 
             <div class="col-lg-5 offset-lg-1 col-md-6 col-sm-12 order-sm-1 mt-sm-3 mb-sm-5" id="top-images">
-                <img src="{{asset('assets/images/Screenshot.png')}}" alt="About " class="d-block mx-auto my-auto">
+                <img src="{{ asset('assets/images/Screenshot.png') }}" alt="About " class="d-block mx-auto my-auto">
             </div>
 
 
@@ -300,27 +307,27 @@
            
 
             <div class="row">
-                 @foreach($blog as $blogs)
+                 @foreach ($blog as $blogs)
             <div class="col-lg-4 col-md-4 col-sm-12 col-12 text-center">
                 <ul class="list-unstyled" id="topblog">
    <li class="row gx-0 mb-4">
                                 <div class="col-6 img-squareRound">
                                     <a class="flex-shrink-0 me-3" style="width: 100px;" href="#">
-                                <img src="{{asset('public/BlogImage/'.$blogs->blog_image)}}"  alt="A Guide to Securing your US Student Visa Successfully 2022">
+                                <img src="{{ asset('public/BlogImage/' . $blogs->blog_image) }}"  alt="A Guide to Securing your US Student Visa Successfully 2022">
                                                                             </a>
                                 </div>
                                 <div class="col-8 ps-1 ms-3">
                                     <h4 class="h6 mb-1 nav-dark fs-6">
-                                        <a class="nav-link fw-bold" href="#">{{$blogs->blog_heading}}</a>
+                                        <a class="nav-link fw-bold" href="#">{{ $blogs->blog_heading }}</a>
                                     </h4>
                                     <?php $bloog = Str::limit($blogs->blog_description, 150, '...'); ?>
-                           {!!$bloog!!}        
-                                    <span class="d-block mb-1 fs-sm text-muted">Published on {{$blogs->created_at->format('d M, Y')}}</span>
+                           {!! $bloog !!}        
+                                    <span class="d-block mb-1 fs-sm text-muted">Published on {{ $blogs->created_at->format('d M, Y') }}</span>
 
                                     @php 
                                   $title =  str_replace(' ', '-', $blogs->blog_heading);
                                     @endphp
-                                    <a href="{{url('blog-details/'.$title)}}" class="mt-1 mb-1">Read More <i class="ri-arrow-right-line align-middle"></i></a>
+                                    <a href="{{ url('blog-details/' . $title) }}" class="mt-1 mb-1">Read More <i class="ri-arrow-right-line align-middle"></i></a>
                                 </div>
                             </li>
 
@@ -328,8 +335,7 @@
 
 
                </ul>
-            </div>
-             @endforeach
+            </div> @endforeach
         </div>
            
            
@@ -342,10 +348,11 @@
             
         </div>
     </section>
-    <section class="container-fluid bg-blue-light">
+    <section class="container-fluid
+        bg-blue-light">
     <section class="container  pt-5 pb-sm-5 pb-4 px-0 px-sm-3" id="cont">
         <div class="row">
-        <h2 class="h2 mb-2 pb-3 text-center">Our Record</h2>
+            <h2 class="h2 mb-2 pb-3 text-center">Our Record</h2>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <div class="employees">
                     <p class="counter-count">{{ $student->count() }}</p>
@@ -374,92 +381,99 @@
                 </div>
             </div>
         </div>
-    </div>
-    </section>
-</section>
-    
-<section class="container-fluid">
-        <div class="container">
-  <h2 class="h2 mb-2 pb-3 text-center">Our  Partners</h2>
-   <section class="customer-logos slider">
-      <div class="slide"><img class="navbar-brand-static1 " src="{{asset('assets/images/image23.jpeg')}}"
-                  width="200"></div>
-      <div class="slide"><img class="navbar-brand-static1 " src="{{asset('assets/images/image24.jpg')}}" width="200"></div>
-      <div class="slide"><img class="navbar-brand-static1 " src="{{asset('assets/images/image25.png')}}"
-                 
-                 width="200"></div>
-      <div class="slide"><img class="navbar-brand-static1 " src="{{asset('assets/images/image26.png')}}"
-                 width="200"></div>
-      <div class="slide"><img class="navbar-brand-static1 " src="{{asset('assets/images/image27.jpeg')}}"
-                  width="200"></div>
-      <div class="slide"><img class="navbar-brand-static1 " src="{{asset('assets/images/image26.png')}}"
-                 width="200"></div>
-      <div class="slide"><img class="navbar-brand-static1 " src="{{asset('assets/images/image22.png')}}"
-                  width="200"></div>
-     
-   </section>
-</div>
-    </section>
-
-
-
-
-
-
-<section class="container-fluid  ab-home-banner-bg">
-    <section class="container py-lg-5 pt-5 pb-sm-5 pb-4 px-0">
-        <div class="row">
-            <div class="col-md-6 col-sm-12 col-12 text-sm-center text-md-start">
-                <h6 class=" color-light-blue">Stay up to date</h6>
-                <h3 class="h2  color-light-blue">Subscribe to our Newsletter!</h3>
-            </div>
-
-            <div class="col-md-6 col-sm-12 col-12 home-subscription-block my-auto">
-                    <form  action="#" accept-charset="UTF-8" class="subscribe-block needs-validation position-relative" novalidate="" data-hs-cf-bound="true"><input name="_token" type="hidden" value="fCNGacmy6ahl5haQneuCxq2Nan6oKwUuJ3VBp2pX">
-                    <div class="input-group mb-3 ">
-                        <input type="email" name="email" class="form-control" placeholder="Your Valid Email" aria-label="Recipient 's email" aria-describedby="button-addon2" required="">
-                                <span class="invalid-feedback position-absolute" style="top:50px; left: 0;">
-                                    Valid Email is required
-                                </span>
-                        <button class=" btn btn-primary" type="submit" id="button-addon2 ">Subscribe Now</button>
-                    </div>
-                </form>
-            </div>
         </div>
     </section>
-</section>
+    </section>
 
-@include('layout.footer')
+    <section class="container-fluid">
+        <div class="container">
+            <h2 class="h2 mb-2 pb-3 text-center">Our Partners</h2>
+            <section class="customer-logos slider">
+                <div class="slide"><img class="navbar-brand-static1 " src="{{ asset('assets/images/image23.jpeg') }}"
+                        width="200"></div>
+                <div class="slide"><img class="navbar-brand-static1 " src="{{ asset('assets/images/image24.jpg') }}"
+                        width="200"></div>
+                <div class="slide"><img class="navbar-brand-static1 " src="{{ asset('assets/images/image25.png') }}"
+                        width="200"></div>
+                <div class="slide"><img class="navbar-brand-static1 " src="{{ asset('assets/images/image26.png') }}"
+                        width="200"></div>
+                <div class="slide"><img class="navbar-brand-static1 " src="{{ asset('assets/images/image27.jpeg') }}"
+                        width="200"></div>
+                <div class="slide"><img class="navbar-brand-static1 " src="{{ asset('assets/images/image26.png') }}"
+                        width="200"></div>
+                <div class="slide"><img class="navbar-brand-static1 " src="{{ asset('assets/images/image22.png') }}"
+                        width="200"></div>
 
-<script src="{{asset('assets/js/script.bundle.js')}}"></script>
-<script src="{{asset('assets/js/polyfills.min.js')}}"></script>
-
-<!-- Main theme script-->
-
+            </section>
+        </div>
+    </section>
 
 
-<script>$(document).ready(function(){
-    $('.customer-logos').slick({
-        slidesToShow: 6,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 1500,
-        arrows: false,
-        dots: false,
-        pauseOnHover: false,
-        responsive: [{
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 4
-            }
-        }, {
-            breakpoint: 520,
-            settings: {
-                slidesToShow: 3
-            }
-        }]
-    });
-});</script>
-</body>
-</html>   
-   
+
+
+
+
+    <section class="container-fluid  ab-home-banner-bg">
+        <section class="container py-lg-5 pt-5 pb-sm-5 pb-4 px-0">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-12 text-sm-center text-md-start">
+                    <h6 class=" color-light-blue">Stay up to date</h6>
+                    <h3 class="h2  color-light-blue">Subscribe to our Newsletter!</h3>
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-12 home-subscription-block my-auto">
+                    <form action="#" accept-charset="UTF-8"
+                        class="subscribe-block needs-validation position-relative" novalidate=""
+                        data-hs-cf-bound="true"><input name="_token" type="hidden"
+                            value="fCNGacmy6ahl5haQneuCxq2Nan6oKwUuJ3VBp2pX">
+                        <div class="input-group mb-3 ">
+                            <input type="email" name="email" class="form-control" placeholder="Your Valid Email"
+                                aria-label="Recipient 's email" aria-describedby="button-addon2" required="">
+                            <span class="invalid-feedback position-absolute" style="top:50px; left: 0;">
+                                Valid Email is required
+                            </span>
+                            <button class=" btn btn-primary" type="submit" id="button-addon2 ">Subscribe
+                                Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    @include('layout.footer')
+
+    <script src="{{ asset('assets/js/script.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/polyfills.min.js') }}"></script>
+
+    <!-- Main theme script-->
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('.customer-logos').slick({
+                slidesToShow: 6,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 1500,
+                arrows: false,
+                dots: false,
+                pauseOnHover: false,
+                responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 4
+                    }
+                }, {
+                    breakpoint: 520,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                }]
+            });
+        });
+    </script>
+    </body>
+
+</html>
