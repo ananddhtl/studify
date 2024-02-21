@@ -276,7 +276,7 @@
                                                              <label for="avatar">Choose a University
                                                                  picture:</label>
                                                              <br>
-                                                             <img src="{{asset('public/InstitutionImage/'.$institution->univ_img)}}"
+                                                             <img src="{{asset('InstitutionImage/'.$institution->univ_img)}}"
                                                                  width="200" height="80">
                                                              <br><br>
                                                              <input type="file" id="avatar" name="univ_img"
@@ -288,7 +288,7 @@
 
                                                              <label for="avatar">Choose a Thumbnail
                                                                  picture:</label><br>
-                                                             <img src="{{asset('public/InstitutionImage/'.$institution->thumbnail)}}"
+                                                             <img src="{{asset('InstitutionImage/'.$institution->thumbnail)}}"
                                                                  width="200" height="80">
                                                              <br><br>
                                                              <input type="file" id="avatar" name="thumbnail"
@@ -724,7 +724,7 @@ Enter text here...
 
                                                                          <div class="fv-row mb-10">
                                                                              @foreach($images as $image)
-                                                                             <img src="{{asset('/public/InstitutionImage/'.$image->image)}}"
+                                                                             <img src="{{asset('InstitutionImage/'.$image->image)}}"
                                                                                  alt="Simply Easy Learning" width="200"
                                                                                  height="140">
 
