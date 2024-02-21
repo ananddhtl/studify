@@ -1766,7 +1766,7 @@ class InstitutionController extends Controller
             return redirect()->route('/institution/login');
         } else {
             $id = Session::get('institution_id');
-            $task = addTask::where('institution_id', $id)->where('type', 'insitution')->where('assign_id', '0')->where('status', '0')->get();
+            $task = addTask::where('insitution_id', $id)->where('type', 'insitution')->where('assign_id', '0')->where('status', '0')->get();
 
             $staff = addRole::where('institution_id', $id)->where('type', 'insitution')->get();
             return view('institution/getSelfTask', compact('task', 'staff'));
