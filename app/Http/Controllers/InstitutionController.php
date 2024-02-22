@@ -1369,7 +1369,7 @@ class InstitutionController extends Controller
         $insitutionid = Session::get('institution_id');
         $json = json_encode($request->rolefeatures);
 
-        $createrole = addRole::create(['name' => $name, 'email' => $email, 'insitutionid' => $insitutionid, 'phone' => $phone, 'role' => $role, 'type' => $type, 'password' => Hash::make($password), 'rolefeatures' => $json]);
+        $createrole = addRole::create(['name' => $name, 'email' => $email, 'insitution_id' => $insitutionid, 'phone' => $phone, 'role' => $role, 'type' => $type, 'password' => Hash::make($password), 'rolefeatures' => $json]);
         $id = Session::get('institution_id');
         $agentmail = InstitutionModel::where('id', $id)->first();
         if ($createrole) {
