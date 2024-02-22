@@ -1438,10 +1438,11 @@ class InstitutionController extends Controller
     public function leadmanage()
     {
         $idd = Session::get('institution_id');
+       
         $institution = addInstitution::where('institution_id', $idd)->first();
 
         $leads = addLead::where('type', 'insitution')->where('lead_assign_id', $institution->id)->where('status', '0')->get();
-        $staff = addRole::where('type', 'insitution')->where('insitutionid', $idd)->get();
+        $staff = addRole::where('type', 'insitution')->where('insitution_id', $idd)->get();
         return view('institution/manageLead', compact('leads', 'staff'));
     }
 
@@ -1768,7 +1769,7 @@ class InstitutionController extends Controller
             $id = Session::get('institution_id');
             $task = addTask::where('insitution_id', $id)->where('type', 'insitution')->where('assign_id', '0')->where('status', '0')->get();
 
-            $staff = addRole::where('institution_id', $id)->where('type', 'insitution')->get();
+            $staff = addRole::where('insitution_id', $id)->where('type', 'insitution')->get();
             return view('institution/getSelfTask', compact('task', 'staff'));
         }
     }
