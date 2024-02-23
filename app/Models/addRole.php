@@ -21,7 +21,7 @@ class addRole extends Model
         'role_type',
         'password',
         'agent_id',
-        'insitutionid',
+        'insitution_id',
         
     ];
 
