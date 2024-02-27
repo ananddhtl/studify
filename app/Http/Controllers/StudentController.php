@@ -93,7 +93,7 @@ class StudentController extends Controller
         if ($request->password != $request->confirm_password) {
             return back()->with('password', 'Password not match');
         } else {
-
+           
             $validate = Validator::make($request->all(), [
                 'first_name' => 'required',
                 'last_name' => 'required',

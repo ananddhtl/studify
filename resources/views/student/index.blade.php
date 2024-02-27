@@ -434,9 +434,10 @@
                         aria-label="Default select example">
                         <option selected>Select your birth place</option>
                         @foreach ($country as $countrys)
+                        
                             <option value="{{ $countrys->country_name }}"
                                 {{ $student->country == $countrys->country_name ? 'selected' : '' }}>
-                                {{ $countrys->name }}</option>
+                                {{ $countrys->country_name }}</option>
                         @endforeach
                     </select>
 
@@ -465,7 +466,7 @@
 
 
                 <input type="file" id="myFile" name="student_img"> <br><br>
-                <img src="{{ asset('public/StudentImage/' . $student->student_img) }}" alt="Simply Easy Learning"
+                <img src="{{ asset('StudentImage/' . $student->student_img) }}" alt="Simply Easy Learning"
                     width="200" height="80">
                 @error('student_img')
                     <span class="text-danger">{{ $message }}</span>
@@ -1944,7 +1945,7 @@
                     </label><br>
                     @if (count($passportimage) != '0')
                         @foreach ($passportimage as $passportimages)
-                            <img src="{{ asset('public/StudentPassportImage/' . $passportimages->image) }}"
+                            <img src="{{ asset('StudentPassportImage/' . $passportimages->image) }}"
                                 width="100" height="100">
                             <a href="{{ url('student/delete-passport/' . $passportimages->id) }}" id="cross"><i
                                     class="fa fa-times" aria-hidden="true"></i></a>
@@ -1978,7 +1979,7 @@
                             </div>
                         </div>
                     </label><br>
-                    <img src="{{ asset('public/StudentEnglishCertificate/' . $student->english_certificate) }}"
+                    <img src="{{ asset('StudentEnglishCertificate/' . $student->english_certificate) }}"
                         width="100" height="100">
 
 
@@ -2013,7 +2014,7 @@
                     </label><br>
                     @if (count($marksheet) != '0')
                         @foreach ($marksheet as $marksheets)
-                            <img src="{{ asset('public/StudentMarksheetImage/' . $marksheets->marksheet) }}"
+                            <img src="{{ asset('StudentMarksheetImage/' . $marksheets->marksheet) }}"
                                 width="100" height="100">
                             <a href="{{ url('student/delete-marksheet/' . $marksheets->id) }}" id="cross"><i
                                     class="fa fa-times" aria-hidden="true"></i></a>
@@ -2045,7 +2046,7 @@
                             </div>
                         </div>
                     </label><br>
-                    <img src="{{ asset('public/StudentResume/' . $student->resume) }}" width="100"
+                    <img src="{{ asset('StudentResume/' . $student->resume) }}" width="100"
                         height="100">
 
                 </div>
@@ -2076,7 +2077,7 @@
                     <br>
                     @if (count($recommendation) != '0')
                         @foreach ($recommendation as $recommendations)
-                            <img src="{{ asset('public/StudentRecommandation/' . $recommendations->recommand) }}"
+                            <img src="{{ asset('StudentRecommandation/' . $recommendations->recommand) }}"
                                 width="100" height="100">
                             <a href="{{ url('student/delete-recommendations/' . $recommendations->id) }}"
                                 id="cross"><i class="fa fa-times" aria-hidden="true"></i></a>
@@ -2110,7 +2111,7 @@
                     </label><br>
                     @if (count($financial) != '0')
                         @foreach ($financial as $financials)
-                            <img src="{{ asset('public/StudentFinanicalImage/' . $financials->financial_images) }}"
+                            <img src="{{ asset('StudentFinanicalImage/' . $financials->financial_images) }}"
                                 width="100" height="100">
                             <a href="{{ url('student/delete-financials/' . $financials->id) }}" id="cross"><i
                                     class="fa fa-times" aria-hidden="true"></i></a>
@@ -2144,7 +2145,7 @@
                     </label><br>
                     @if (count($other) != '0')
                         @foreach ($other as $others)
-                            <img src="{{ asset('public/StudentOther/' . $others->other_image) }}" width="100"
+                            <img src="{{ asset('StudentOther/' . $others->other_image) }}" width="100"
                                 height="100">
                             <a href="{{ url('student/delete-other/' . $others->id) }}" id="cross"><i
                                     class="fa fa-times" aria-hidden="true"></i></a>

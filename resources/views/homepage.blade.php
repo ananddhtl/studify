@@ -313,7 +313,7 @@
    <li class="row gx-0 mb-4">
                                 <div class="col-6 img-squareRound">
                                     <a class="flex-shrink-0 me-3" style="width: 100px;" href="#">
-                                <img src="{{ asset('public/BlogImage/' . $blogs->blog_image) }}"  alt="A Guide to Securing your US Student Visa Successfully 2022">
+                                <img src="{{ asset('BlogImage/' . $blogs->blog_image) }}"  alt="A Guide to Securing your US Student Visa Successfully 2022">
                                                                             </a>
                                 </div>
                                 <div class="col-8 ps-1 ms-3">

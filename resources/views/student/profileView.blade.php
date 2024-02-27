@@ -15,7 +15,7 @@
                         <!--begin: Pic-->
                         <div class="me-7 mb-4">
                             <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                         <img class="img-responsive1" src="{{asset('public/StudentImage/'.$student->student_img)}}" alt="Invalid Files" title="Invalid Files">
+                         <img class="img-responsive1" src="{{asset('StudentImage/'.$student->student_img)}}" alt="Invalid Files" title="Invalid Files">
                                     
 
                             </div>

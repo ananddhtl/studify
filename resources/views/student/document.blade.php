@@ -250,7 +250,7 @@
                                                 </div>
                                                 @if(count($passportimage) != '0')
                                                  @foreach($passportimage as $passportimages)
-                            <img src="{{asset('public/StudentPassportImage/'.$passportimages->image)}}" width="100" height="100">
+                            <img src="{{asset('StudentPassportImage/'.$passportimages->image)}}" width="100" height="100">
                             <a href="{{url('student/delete-passport/'.$passportimages->id)}}" id="cross"><i class="fa fa-times" aria-hidden="true"></i></a>
                             @endforeach
                             @endif
@@ -278,7 +278,7 @@
                                                         <!--end::Info-->
                                                     </div>
                                                 </div>
-                                                <img src="{{asset('public/StudentEnglishCertificate/'.$student->english_certificate)}}" width="100" height="100">
+                                                <img src="{{asset('StudentEnglishCertificate/'.$student->english_certificate)}}" width="100" height="100">
 
 
                                         </div>
@@ -306,7 +306,7 @@
                                                 </div>
                                                 @if(count($marksheet) != '0')
                                                   @foreach($marksheet as $marksheets)
-                            <img src="{{asset('public/StudentMarksheetImage/'.$marksheets->marksheet)}}" width="100" height="100">
+                            <img src="{{asset('StudentMarksheetImage/'.$marksheets->marksheet)}}" width="100" height="100">
                             <a href="{{url('student/delete-marksheet/'.$marksheets->id)}}" id="cross"><i class="fa fa-times" aria-hidden="true"></i></a>
                             @endforeach
                             @endif
@@ -333,7 +333,7 @@
                                                         <!--end::Info-->
                                                     </div>
                                                 </div>
-                                                <img src="{{asset('public/StudentResume/'.$student->resume)}}" width="100" height="100">
+                                                <img src="{{asset('StudentResume/'.$student->resume)}}" width="100" height="100">
 
                                         </div>
                                     </div>
@@ -359,7 +359,7 @@
                                                 </div>
                                                 @if(count($recommendation) != '0')
                                                  @foreach($recommendation as $recommendations)
-                            <img src="{{asset('public/StudentRecommandation/'.$recommendations->recommand)}}" width="100" height="100">
+                            <img src="{{asset('StudentRecommandation/'.$recommendations->recommand)}}" width="100" height="100">
                             <a href="{{url('student/delete-recommendations/'.$recommendations->id)}}" id="cross"><i class="fa fa-times" aria-hidden="true"></i></a>
                             @endforeach
                             @endif
@@ -386,7 +386,7 @@
                                                 </div>
                                                 @if(count($financial) != '0')
                                                 @foreach($financial as $financials)
-                            <img src="{{asset('public/StudentFinanicalImage/'.$financials->financial_images )}}" width="100" height="100">
+                            <img src="{{asset('StudentFinanicalImage/'.$financials->financial_images )}}" width="100" height="100">
                             <a href="{{url('student/delete-financials/'.$financials->id)}}" id="cross"><i class="fa fa-times" aria-hidden="true"></i></a>
                             @endforeach
                             @endif
@@ -414,7 +414,7 @@
                                                 </div>
                                                 @if(count($other) != '0')
                                 @foreach($other as $others)
-                            <img src="{{asset('public/StudentOther/'.$others->other_image)}}" width="100" height="100">
+                            <img src="{{asset('StudentOther/'.$others->other_image)}}" width="100" height="100">
                             <a href="{{url('student/delete-other/'.$others->id)}}" id="cross"><i class="fa fa-times" aria-hidden="true"></i></a>
                             @endforeach
                             @endif
