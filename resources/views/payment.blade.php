@@ -140,10 +140,15 @@
                             method="post" 
                             class="require-validation"
                             data-cc-on-file="false"
-                            data-stripe-publishable-key="pk_test_51MfxwqICtr57ZGkoexllBLzNTot2X2Y34Qwx4xSeEL9Cc2ZI0Q0VWwkIH4fP7EDjEEVlhjIsPkPeM1KKHpGS3Ls300HhUxzipP"
+                            data-stripe-publishable-key="pk_test_51OwePa2KaOoE4geVLYF90ySOekT6T3lalPtBGf9lxXCy8SdwzAIAaRtnV9tORMXXQEdrTdxJeeXvxW21qzBmAk8800teK6HVVw"
                             id="payment-form">
                         @csrf
-  
+                        <div class='form-row row'>
+                            <div class='col-xs-12 form-group required'>
+                                <label class='control-label'>Email</label> <input
+                                  name="email" class='form-control'  type='email'>
+                            </div>
+                        </div>
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group required'>
                                 <label class='control-label'>Name on Card</label> <input

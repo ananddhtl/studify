@@ -73,9 +73,11 @@ Route::get('/course-payment/{id}', [HomeController::class, 'coursePayment'])->na
 
 Route::post('/stripe.post', [HomeController::class, 'stripePost'])->name('/stripe.post');
 
-Route::post('/khalti/payment/verify',[HomeController::class,'verifyPayment'])->name('/khalti/payment/verify');
+Route::post('/khalti/payment/verify',[HomeController::class,'verifyPayment'])->name('khalti.verifyPayment');
 
 Route::post('/khalti/payment/store',[HomeController::class,'storePayment'])->name('khalti.storePayment');
+
+
 
 Route::get('/univeristy-apply/{insitutionid}/{courseid}', [HomeController::class, 'univeristyApply'])->name('/univeristy-apply/{insitutionid}/{courseid}');
 

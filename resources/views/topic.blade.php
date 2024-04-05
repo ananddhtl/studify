@@ -418,7 +418,7 @@ p.paysel {
                            
                                      <!-- <h6 class="h2 mb-2 pb-3"><span class="font-weight-600">{{$course->course_name}}</span><button class="coure"><a href="{{url('/course-payment/'.$course->id)}}" style="color: #fff;">Buy Now</a></button></h6> -->
 
-                           <p class="paysel">If you dont have any coupon code than <button type="submit" class="package" ><a href="{{url('/course-payment/'.$course->id)}}" style="color:white;" class="package">Click Here</a></button> </p>
+                           <p class="paysel">If you dont have any coupon code than, select the payment type<br> <button type="submit" class="package" ><a href="{{url('/course-payment/'.$course->id)}}" style="color:white;" class="package">Stripe</a></button><button type="submit" class="package" ><a href="{{url('/course-payment/'.$course->id)}}" style="color:white;" class="package">Stripe</a></button> </p>
                       </div>
                       <br>
                   </div> <br>

@@ -755,35 +755,63 @@ class HomeController extends Controller
 
     public function stripePost(Request $request)
     {
-
         $course_id = $request->course_id;
         $student_id = $request->student_id;
-        $discount_prize = $request->discount_prize;
-
-        $course = studentCourse::where('member_id', $student_id)->where('course_id', $course_id)->where('payment_status', '1')->first();
+        
+        $email = $request->email;
+        $discount_prize = 600000; // Amount should be in cents, not dollars
+    
+        $course = studentCourse::where('member_id', $student_id) 
+            ->where('course_id', $course_id)
+            ->where('payment_status', '1')
+            ->first();
+        
         if ($course) {
-            return redirect()->route('/student/get-course');
+            return redirect()->route('/student/get-course')->with('course', 'Course already purchased.');
         }
-
-        Stripe\Stripe::setApiKey('sk_test_51MfxwqICtr57ZGkocpIN45YU5nOnY23s9S229o3qEVC8UqqBf4njUvq4FYoscQICQXac6fQbvbqp7Q0JlAlM1ogN00ekfzwP6n');
-        $charge = Stripe\Charge::create([
-            "amount" => $request->discount_prize,
-            "currency" => "usd",
-            "source" => $request->stripeToken,
-            "description" => "Test payment from Studify.",
-        ]);
-
-        Session::flash('success', 'Payment successful!');
-
-        $course = studentCourse::create(['member_id' => $student_id, 'course_id' => $course_id, 'amount' => $discount_prize, 'transcation_id' => $charge->id,
-            'payment_status' => '1']);
-        if ($course) {
-
-            return redirect()->route('/student/get-course')->with('course', 'Buy Course Successfully');
-        } else {
-            return back();
+    
+        Stripe\Stripe::setApiKey('sk_test_51OwePa2KaOoE4geVM58HDVlv0NFDvWsu5g8eb6llBFBYku8i5j6ddFCldTTsSAgUt1qCipnHZQ4sNaVieO3ePUgG00BIsA0aZN');
+        
+        if (!$request->stripeToken) {
+            return back()->with('error', 'Invalid payment method. Please provide a valid payment method.');
+        }
+        
+        try {
+            $customer = \Stripe\Customer::create([
+                'email' => $email,
+                'source' => $request->stripeToken,
+            ]);
+    
+            $charge = Stripe\Charge::create([
+                'customer' => $customer->id,
+                'amount' => $discount_prize,
+                'currency' => 'usd',
+                'description' => 'Test payment from Studify.',
+            ]);
+    
+            Session::flash('success', 'Payment successful!');
+    
+            $course = studentCourse::create([
+                'member_id' => $student_id,
+                'course_id' => $course_id,
+                'amount' => $discount_prize,
+                'transcation_id' => $charge->id,
+                'payment_status' => '1'
+            ]);
+    
+            if ($course) {
+                return redirect()->route('/student/get-course')->with('course', 'Buy Course Successfully');
+            } else {
+                return back()->with('error', 'Failed to save course details.');
+            }
+        } catch (Stripe\Exception\InvalidRequestException $e) {
+            return back()->with('error', $e->getMessage());
+        } catch (Exception $e) {
+            return back()->with('error', $e->getMessage());
         }
     }
+    
+    
 
     public function universityStripePost(Request $request)
     {
@@ -806,7 +834,7 @@ class HomeController extends Controller
         Session::flash('success', 'Payment successful!');
 
         $course = universityCoursePayment::create(['agent_id' => $student->agent_id, 'insitution_id' => $insitutionid, 'course_id' => $course_id, 'student_id' => $student_id, 'transcation_id' => $charge->id,
-            'payment_status' => '1', 'fees_type' => 'application', 'fees_amount' => $request->price]);
+            'payment_status' => '1', 'fees_type' => 'application', 'fees_amount' => $request->price,'payment_mode'=> 'Stripe']);
         $user = StudentModel::where('id', $student_id)->first();
         $user->insitution_id = $insitutionid;
         $user->save;
@@ -824,6 +852,9 @@ class HomeController extends Controller
             return back();
         }
     }
+
+
+    
 
     public function offlineUniveristyFees(Request $request)
     {
@@ -905,12 +936,41 @@ class HomeController extends Controller
         $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
         return $response;
+        dd($response);
     }
 
     public function storePayment(Request $request)
     {
-        // $response = $request->response;
-        // store the data to database here
+
+       
+        $student_id = Session::get('student_iddd');
+        $student = StudentModel::where('id', $student_id)->first();
+        $course_id = $request->courseid;
+        
+        $insitutionid = $request->insitutionid;
+        $type = addCoursesModel::where('id', $course_id)->first();
+       
+
+        Session::flash('success', 'Payment successful!');
+
+        $course = universityCoursePayment::create(['agent_id' => $student->agent_id, 'insitution_id' => $insitutionid, 'course_id' => $course_id, 'student_id' => $student_id, 'transcation_id' => $request->_token,
+            'payment_status' => '1', 'fees_type' => 'application', 'fees_amount' => $request->price,'payment_mode'=> 'Khalti']);
+        $user = StudentModel::where('id', $student_id)->first();
+        $user->insitution_id = $insitutionid;
+        $user->save;
+        if ($course) {
+            $details = [
+                'name' => $user->first_name,
+                'email' => $user->email,
+                'coursename' => $type->c_name,
+                'type' => $type->type,
+            ];
+
+            Mail::to('info@studify.au')->send(new BuyCourseSentAdmin($details));
+            return redirect()->route('/student/dashboard');
+        } else {
+            return back();
+        }
         return response()->noContent();
     }
 
