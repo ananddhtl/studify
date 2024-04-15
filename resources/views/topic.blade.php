@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Study-in-Australia page</title>
+    <title>Study-in-Australia page</title>
     <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet" href="{{asset('assets/style.css')}}">
-   <link rel="icon" type="{{asset('assets/image/png')}}" sizes="60x60" href="{{asset('assets/images/fav.png')}}">
-<link rel="icon" type="{{asset('assets/image/png')}}" sizes="96x96" href="{{asset('assets/images/fav.png')}}">
-<link rel="icon" type="{{asset('assets/image/png')}}" sizes="60x60" href="{{asset('assets/images/fav.png')}}">
-   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/style.css') }}">
+    <link rel="icon" type="{{ asset('assets/image/png') }}" sizes="60x60"
+        href="{{ asset('assets/images/fav.png') }}">
+    <link rel="icon" type="{{ asset('assets/image/png') }}" sizes="96x96"
+        href="{{ asset('assets/images/fav.png') }}">
+    <link rel="icon" type="{{ asset('assets/image/png') }}" sizes="60x60"
+        href="{{ asset('assets/images/fav.png') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,600;0,700;0,800;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -263,19 +270,19 @@ p.paysel {
                $topicsss = App\Models\studentCourse::where(['course_id' => $course->id])->where(['member_id' => $student_id])->where(['payment_status' =>'1'])->first();
             @endphp
 
-              @if($topicsss)
-        <h6 class="h2 mb-2 pb-3"><span class="font-weight-600">{{$course->course_name}}</span><button class="coure"><a href="{{url('/student/get-course-topic/'.$id)}}">View Course</a></button></h6>
+              @if ($topicsss)
+        <h6 class="h2 mb-2 pb-3"><span class="font-weight-600">{{ $course->course_name }}</span><button class="coure"><a href="{{ url('/student/get-course-topic/' . $id) }}">View Course</a></button></h6>
         @else
-            @if(Session::get('login') != '')
-                         @if(Session::get('login') == 'student')
-                         <h6 class="h2 mb-2 pb-3"><span class="font-weight-600">{{$course->course_name}}</span><button class="coure"><a data-toggle="modal" data-target="#applycoupon" style="color: #fff;">Buy Now</a></button></h6>
+            @if (Session::get('login') != '')
+                         @if (Session::get('login') == 'student')
+                         <h6 class="h2 mb-2 pb-3"><span class="font-weight-600">{{ $course->course_name }}</span><button class="coure"><a data-toggle="modal" data-target="#applycoupon" style="color: #fff;">Buy Now</a></button></h6>
 
-          <!-- <h6 class="h2 mb-2 pb-3"><span class="font-weight-600">{{$course->course_name}}</span><button class="coure"><a href="{{url('/course-payment/'.$course->id)}}" style="color: #fff;">Buy Now</a></button></h6> -->
+          <!-- <h6 class="h2 mb-2 pb-3"><span class="font-weight-600">{{ $course->course_name }}</span><button class="coure"><a href="{{ url('/course-payment/' . $course->id) }}" style="color: #fff;">Buy Now</a></button></h6> -->
                    @else
-                   <h6 class="h2 mb-2 pb-3"><span class="font-weight-600">{{$course->course_name}}</span><button class="coure"><a data-toggle="modal" data-target="#exampleModalCenter" style="color: #fff;">Buy Now</a></button></h6>
+                   <h6 class="h2 mb-2 pb-3"><span class="font-weight-600">{{ $course->course_name }}</span><button class="coure"><a data-toggle="modal" data-target="#exampleModalCenter" style="color: #fff;">Buy Now</a></button></h6>
           @endif  
         @else
-        <h6 class="h2 mb-2 pb-3"><span class="font-weight-600">{{$course->course_name}}</span><button class="coure"><a data-toggle="modal" data-target="#exampleModalCenter" style="color: #fff;">Buy Now</a></button></h6>
+        <h6 class="h2 mb-2 pb-3"><span class="font-weight-600">{{ $course->course_name }}</span><button class="coure"><a data-toggle="modal" data-target="#exampleModalCenter" style="color: #fff;">Buy Now</a></button></h6>
        @endif
 
        @endif
@@ -289,9 +296,9 @@ p.paysel {
 
               <ul class="m-d expand-list">
                 @php $i = 1;  @endphp
-                @foreach($topic as $topics)
+                @foreach ($topic as $topics)
   <li onclick="myFunction('topic','1')"  data-md-content="200">
-    <label name="tab" for="tab1"  tabindex="-1" class="tab_lab" role="tab">Topic {{$i++}}: {{$topics->topic_name}}</label>
+    <label name="tab" for="tab1"  tabindex="-1" class="tab_lab" role="tab">Topic {{ $i++ }}: {{ $topics->topic_name }}</label>
     <input type="checkbox"  class="tab" id="tab1" tabindex="0" />
     <span class="open-close-icon">
       <i class="fa fa-plus" aria-hidden="true"></i><i class="fa fa-minus" aria-hidden="true"></i>
@@ -304,9 +311,8 @@ p.paysel {
             @php
             $j = '1';
             @endphp 
-            @foreach($chapter as $chapters)
-          <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i> Lesson  {{$j++}}: <a >{{$chapters->chapter_name}}</a></li>
-           @endforeach
+            @foreach ($chapter as $chapters)
+          <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i> Lesson  {{ $j++ }}: <a >{{ $chapters->chapter_name }}</a></li> @endforeach
               </ul>
         </div>
     </li>
@@ -315,117 +321,136 @@ p.paysel {
 </div>
   </div>
 </section>
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content1" style="width: 100%;">
-    <div class="modal-content" id="widthtop" style="width: 80%; margin-left: 10%;">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          
-        </div>
-        <form method="POST" action="#" accept-charset="UTF-8" class="card-body w-100 w-xl-700px x-9 fv-plugins-bootstrap5 fv-plugins-framework" id="application_manager_form" novalidate="novalidate" enctype="multipart/form-data">
-            @csrf
-                               <div class="w-100" id="top">
-                  <div class="row fv-row">
-                                <div class="row">
-                              
-                              <div class="col-sm-6">
-                              <a href="{{url('/member/login')}}" class="packge">Login</a>
+<div class="modal
+        fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content1" style="width: 100%;">
+            <div class="modal-content" id="widthtop" style="width: 80%; margin-left: 10%;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+                <form method="POST" action="#" accept-charset="UTF-8"
+                    class="card-body w-100 w-xl-700px x-9 fv-plugins-bootstrap5 fv-plugins-framework"
+                    id="application_manager_form" novalidate="novalidate" enctype="multipart/form-data">
+                    @csrf
+                    <div class="w-100" id="top">
+                        <div class="row fv-row">
+                            <div class="row">
+
+                                <div class="col-sm-6">
+                                    <a href="{{ url('/member/login') }}" class="packge">Login</a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a href="{{ url('/member/register') }}" class="coureslogin">Register</a>
+                                </div>
                             </div>
-<div class="col-sm-6">
-                                <a href="{{url('/member/register')}}" class="coureslogin">Register</a>
-                              </div>
-                              </div>
-                           </div>
-                      </div>
-                      <br>
-                  </div> <br>
-                            </form>
-                          </div>
-  </div>
-</div>
+                        </div>
+                    </div>
+                    <br>
+            </div> <br>
+            </form>
+        </div>
+    </div>
+    </div>
 
 
 
 
     </div><!-- /#right-panel -->
 
-    <div class="modal fade" id="applycoupon" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content1" style="width: 100%;">
-    <div class="modal-content" id="widthtop" style="width: 100%; margin-left: 10%;">
-        <div class="modal-header">
-      Apply Coupon
+    <div class="modal fade" id="applycoupon" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content1" style="width: 100%;">
+                <div class="modal-content" id="widthtop" style="width: 100%; margin-left: 10%;">
+                    <div class="modal-header">
+                        Apply Coupon
 
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          
-        </div>
-        <form action="{{url('/course-payment/'.$course->id)}}" accept-charset="UTF-8" class="card-body w-100 w-xl-700px x-9 fv-plugins-bootstrap5 fv-plugins-framework" id="application_manager_form" novalidate="novalidate" enctype="multipart/form-data">
-            @csrf
-                               <div class="w-100" id="top">
-                  
-                                <div class="row">
-                                  <div class="col-sm-6">
-                       <label><b>Enter Coupon Code</b></label></div>
-                       <div class="col-sm-6"></div>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                       <div class="col-sm-8"><input type="text" name="couponcode" value="Enter Coupon Code" id="couponcode"><br>
-                       @if($errors->has('couponcode'))
-    <div class="error">{{ $errors->first('couponcode') }}</div>
-@endif
-                       <input type="hidden" name="course_id" value="{{$course->id}}" id="couponcodeid"></div>
-                      <div class="col-sm-4">
-      <button type="submit" class="package" >Apply Coupon</button>
+                    </div>
+                    <form action="{{ url('/course-payment/' . $course->id) }}" accept-charset="UTF-8"
+                        class="card-body w-100 w-xl-700px x-9 fv-plugins-bootstrap5 fv-plugins-framework"
+                        id="application_manager_form" novalidate="novalidate" enctype="multipart/form-data">
+                        @csrf
+                        <div class="w-100" id="top">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label><b>Enter Coupon Code</b></label>
+                                </div>
+                                <div class="col-sm-6"></div>
+
+                                <div class="col-sm-8"><input type="text" name="couponcode" value="Enter Coupon Code"
+                                        id="couponcode"><br>
+                                    @if ($errors->has('couponcode'))
+                                        <div class="error">{{ $errors->first('couponcode') }}</div>
+                                    @endif
+                                    <input type="hidden" name="course_id" value="{{ $course->id }}"
+                                        id="couponcodeid">
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="submit" class="package">Apply Coupon</button>
+                                </div>
+
+                                @foreach ($allcoupon as $allcoupons)
+                                    <div class="col-sm-12"
+                                        onclick="doWithThisElement('{{ $allcoupons->coupon_code }}')">
+                                        <a>
+                                            <article id="couponclass{{ $allcoupons->id }}"
+                                                onclick="activecoupon({{ $allcoupons->id }})" class="couponclass">
+                                                <section class="date">
+                                                    <time datetime="23th feb">
+                                                        @if ($allcoupons->coupon_discount_type == 'Percentage(%)')
+                                                            <span>{{ $allcoupons->coupon_amount }}% OFF</span>
+                                                        @else
+                                                            <span>AUD{{ $allcoupons->coupon_amount }} Flat </span>
+                                                        @endif
+                                                    </time>
+                                                </section>
+                                                <section class="card-cont">
+                                                    <h2>{{ $allcoupons->coupon_code }}</h2>
+                                                    <div class="even-date">
+                                                        <span class="det">Duration:-</span>
+                                                        <br>
+
+                                                        <time>
+                                                            @if ($allcoupons->coupon_duration == 'all_time_free')
+                                                                <span>All Time Free</span>
+                                                                <span></span>
+                                                            @else
+                                                                <span>Start Date: {{ $allcoupons->start_date }}</span>
+                                                                <span>End Date: {{ $allcoupons->end_date }}</span>
+                                                            @endif
+                                                        </time>
+                                                    </div>
+
+
+                                                </section>
+                                            </article>
+                                        </a>
+                                    </div>
+                                @endforeach
+
                             </div>
 
-@foreach($allcoupon as $allcoupons)
-                            <div class="col-sm-12" onclick="doWithThisElement('{{$allcoupons->coupon_code}}')" >
-                            <a ><article id="couponclass{{$allcoupons->id}}" onclick="activecoupon({{$allcoupons->id}})" class="couponclass">
-      <section class="date">
-        <time datetime="23th feb">
-          @if($allcoupons->coupon_discount_type == 'Percentage(%)')
-          <span>{{$allcoupons->coupon_amount}}% OFF</span>
-          @else
-          <span>AUD{{$allcoupons->coupon_amount}} Flat </span>
-          @endif
-        </time>
-      </section>
-      <section class="card-cont">
-      <h2>{{$allcoupons->coupon_code}}</h2>
-        <div class="even-date">
-        <span class="det">Duration:-</span>
-        <br>
-       
-         <time>
-       @if($allcoupons->coupon_duration == 'all_time_free')
-       <span>All Time Free</span>
-       <span></span>
-       @else
-           <span>Start Date:  {{$allcoupons->start_date}}</span>
-           <span>End Date:  {{$allcoupons->end_date}}</span>
-           @endif
-         </time>
+                            <!-- <h6 class="h2 mb-2 pb-3"><span class="font-weight-600">{{ $course->course_name }}</span><button class="coure"><a href="{{ url('/course-payment/' . $course->id) }}" style="color: #fff;">Buy Now</a></button></h6> -->
+
+                            <p class="paysel">If you dont have any coupon code than, select the payment type<br>
+                                <button type="submit" class="package"><a
+                                        href="{{ url('/course-payment/' . $course->id) }}" style="color:white;"
+                                        class="package">Stripe</a></button><button type="submit" class="package"><a
+                                        href="{{ url('/course-payment/' . $course->id) }}" style="color:white;"
+                                        class="package">Stripe</a></button> </p>
+                        </div>
+                        <br>
+                </div> <br>
+                </form>
+            </div>
         </div>
-       
-       
-      </section>
-    </article>
-</a>
- </div>
- @endforeach
-
-                              </div>
-                           
-                                     <!-- <h6 class="h2 mb-2 pb-3"><span class="font-weight-600">{{$course->course_name}}</span><button class="coure"><a href="{{url('/course-payment/'.$course->id)}}" style="color: #fff;">Buy Now</a></button></h6> -->
-
-                           <p class="paysel">If you dont have any coupon code than, select the payment type<br> <button type="submit" class="package" ><a href="{{url('/course-payment/'.$course->id)}}" style="color:white;" class="package">Stripe</a></button><button type="submit" class="package" ><a href="{{url('/course-payment/'.$course->id)}}" style="color:white;" class="package">Stripe</a></button> </p>
-                      </div>
-                      <br>
-                  </div> <br>
-                            </form>
-                          </div>
-  </div>
-</div>
+    </div>
 
 
 
@@ -433,66 +458,62 @@ p.paysel {
     </div>
 
 
-@include('layout.footer')
+    @include('layout.footer')
 
-<script src="{{asset('assets/js/script.bundle.js')}}"></script>
-<script src="{{asset('assets/js/polyfills.min.js')}}"></script>
+    <script src="{{ asset('assets/js/script.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/polyfills.min.js') }}"></script>
 
-<!-- Main theme script-->
-
-
-
-<script>
-
-function doWithThisElement (id) {
- 
-  $('input[name="couponcode"]').val(id);
-   }
-
-
-   function activecoupon (id) {
-   
-    var idd = "#couponclass"+id;
-    $(".couponclass" ).removeClass( 'active');
-     $(idd).addClass( 'active');
-  }
-
-
-function myFunction(t, n) {
-  var g = t + n;
-  // get all Divs
-  document.getElementById("g").style.display = 'block';
-
-}
-
-$(document).ready(function(){
-    $('.customer-logos').slick({
-        slidesToShow: 6,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 1500,
-        arrows: false,
-        dots: false,
-        pauseOnHover: false,
-        responsive: [{
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 4
-            }
-        }, {
-            breakpoint: 520,
-            settings: {
-                slidesToShow: 3
-            }
-        }]
-    });
-});
+    <!-- Main theme script-->
 
 
 
-</script>
+    <script>
+        function doWithThisElement(id) {
+
+            $('input[name="couponcode"]').val(id);
+        }
 
 
-</body>
-</html>   
-   
+        function activecoupon(id) {
+
+            var idd = "#couponclass" + id;
+            $(".couponclass").removeClass('active');
+            $(idd).addClass('active');
+        }
+
+
+        function myFunction(t, n) {
+            var g = t + n;
+            // get all Divs
+            document.getElementById("g").style.display = 'block';
+
+        }
+
+        $(document).ready(function() {
+            $('.customer-logos').slick({
+                slidesToShow: 6,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 1500,
+                arrows: false,
+                dots: false,
+                pauseOnHover: false,
+                responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 4
+                    }
+                }, {
+                    breakpoint: 520,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                }]
+            });
+        });
+    </script>
+
+
+    </body>
+
+</html>

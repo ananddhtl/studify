@@ -5,7 +5,7 @@
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>Agent Report List</h1>
+                <h1>Student Report List</h1>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
                 <ol class="breadcrumb text-right">
                     <li><a href="#">Dashboard</a></li>
                     <!-- <li><a href="#">Table</a></li> -->
-                    <li class="active">Agent Report List</li>
+                    <li class="active">Student Report List</li>
                 </ol>
             </div>
         </div>
@@ -40,7 +40,7 @@
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title"></strong>
-                        <a style="float: right;" href="{{url('/admin/agent-report/generate-pdf')}}" class="add"><i
+                        <a style="float: right;" href="{{url('/admin/student-report/generate-pdf')}}" class="add"><i
                                 class="fa fa-plus" aria-hidden="true" id="icn"></i>Export to PDF</a>
                     </div>
                     <div class="card-body">
@@ -49,42 +49,28 @@
                             <thead>
                                 <tr>
                                     <th id="main">Sr No.</th>
-                                    <th id="main">Company Name</th>
-                                    <th id="main">Name</th>
+                                    <th id="main">Full Name</th>
+                                    <th id="main">Phone</th>
                                     <th id="main">Email</th>
-                                    <th>Image</th>
-
-                                    <th>Payment Status</th>
-                                    <th>Created</th>
+                                    <th id="main">Gender</th>
+                                    <th id="main">DOB</th>
+                                    <th id="main">Country</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $i = 0;?>
-                                @foreach ($agent as $user)
+                                @foreach ($student as $user)
                                 <tr>
                                     <td>{{ ++$i }}</td>
-                                    <td>{{ $user->company_name }}</td>
-                                    <td>{{ $user->first_name }}</td>
+                                    <td>{{ $user->first_name }} {{ $user->last_name}}</td>
+                                    <td>{{ $user->phone }}</td>
                                     <td>{{ $user->email }}</td>
-                                    @if($user->agent_image !='')
-                                    <td> <img data-toggle="modal" data-target="#exampleModalCenter"
-                                            onclick="onClick(this)"
-                                            src="{{asset('/public/AgentImage/'.$user->agent_image)}}" width="100"
-                                            height="100" class="thumb-lg img-circle" alt="">
+                                  
+                                    <td>{{ $user->gender }}</td>
 
-                                        @else
-                                    <td><img src="{{asset('/public/StudentImage/no-image.png')}}" alt="Site Logo"
-                                            width="50" height="50"></td>
-
-                                    @endif
-
-
-                                    @if($user->payment_status == '0')
-                                    <td style="color:red;">Pending</td>
-                                    @else
-                                    <td style="color:green;">Complete</td>
-                                    @endif
-                                    <td> {{$user->created_at->format('d-m-Y');}}</td>
+                                    <td>{{ $user->dob }}</td>
+                                    <td>{{ $user->country }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

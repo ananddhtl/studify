@@ -57,9 +57,16 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Mail;
 use PDF;
+use App\Services\SparrowService;
 
 class AdminController extends Controller
 {
+    protected $sparrowSMSService;
+
+    public function __construct(SparrowService $sparrowSMSService)
+    {
+        $this->sparrowSMSService = $sparrowSMSService;
+    }
 
     //login page
     public function login()
@@ -1205,11 +1212,19 @@ class AdminController extends Controller
         return response()->json($emp);
     }
 
-    public function sendSms()
+    public function sendSms( Request $request)
     {
         if (Session::get('adminlogin') != 'loginsuccess') {
             return redirect()->route('admin');
         } else {
+
+
+
+            $to = $request->input('to');
+            $message = $request->input('message');
+   
+            $response = $this->sparrowSMSService->sendSMS($to, $message);
+
 
             $smsprofile = smsModel::where('type', 'admin')->orderBy('id', 'desc')->take(5)->get();
             $group = addSmsGroup::where('type', 'admin')->get();
@@ -2798,7 +2813,7 @@ class AdminController extends Controller
         ];
 
         Mail::to($request->email)->send(new sendemailbyadmin($details));
-        $email = emailModel::create(['sender' => $senderEmail, 'reciever' => $email, 'subject' => $subject, 'message' => $message, 'type' => $type, 'member_type' => $request->membertype]);
+        $email = emailModel::create(['sender' => $senderEmail, 'receiver' => $email, 'subject' => $subject, 'message' => $message, 'type' => $type, 'member_type' => $request->membertype]);
         if ($email) {
             return back()->with('message', 'Email send successfully');
         } else {
@@ -2808,91 +2823,70 @@ class AdminController extends Controller
     }
 
     public function sendGroupEmail(Request $request)
-    {
+{
+    $validate = Validator::make($request->all(), [
+        'senderEmail' => 'required',
+        'group' => 'required',
+        'subject' => 'required',
+        'message' => 'required',
+    ], [
+        'senderEmail.required' => 'Sender Email is required.',
+        'group.required' => 'Group ID is required.',
+        'subject.required' => 'Subject is required.',
+        'message.required' => 'Message is required.',
+    ]);
 
-        $validate = Validator::make($request->all(), [
-            'senderEmail' => 'required',
-            'group' => 'required',
-            'subject' => 'required',
-            'message' => 'required',
-            'member_type' => 'required',
-        ], [
-            'senderEmail.required' => 'Sender Email  is must required.',
-            'group.required' => 'Email  is must required.',
-            'subject.required' => 'Subject  is must required.',
-            'message.required' => 'Message is must required.',
-            'member_type.required' => 'Message is must required.',
-
-        ]);
-
-        if ($validate->fails()) {
-            return back()->withErrors($validate->errors())->withInput();
-        }
-
-        $groupss = addGroupMember::where('group_id', $request->group)->get();
-
-        foreach ($groupss as $value) {
-
-            if ($value->type == "Agent") {
-                $agent = AgentModel::find($value->member_id);
-
-                $senderEmail = $request->senderEmail;
-                $email = $agent->email;
-                $subject = $request->subject;
-                $message = $request->message;
-                $type = 'admin';
-
-                $details = [
-
-                    'subject' => $subject,
-                    'email' => $request->email,
-                    'message' => $message,
-                ];
-
-                Mail::to($request->email)->send(new sendemailbyadmin($details));
-                $email = emailModel::create(['sender' => $senderEmail, 'reciever' => $email, 'subject' => $subject, 'message' => $message, 'type' => $type]);
-            } elseif ($value->type == "Insitution") {
-
-                $student = InstitutionModel::find($value->member_id);
-                $senderEmail = $request->senderEmail;
-                $email = $student->email;
-                $subject = $request->subject;
-                $message = $request->message;
-                $type = 'admin';
-                $details = [
-
-                    'subject' => $subject,
-                    'email' => $request->email,
-                    'message' => $message,
-                ];
-
-                Mail::to($request->email)->send(new sendemailbyadmin($details));
-                $email = emailModel::create(['sender' => $senderEmail, 'reciever' => $email, 'subject' => $subject, 'message' => $message, 'type' => $type]);
-
-            } else {
-                $student = StudentModel::find($value->member_id);
-                $senderEmail = $request->senderEmail;
-                $email = $student->email;
-                $subject = $request->subject;
-                $message = $request->message;
-                $type = 'admin';
-                $details = [
-
-                    'subject' => $subject,
-                    'email' => $request->email,
-                    'message' => $message,
-                ];
-
-                Mail::to($request->email)->send(new sendemailbyadmin($details));
-                $email = emailModel::create(['sender' => $senderEmail, 'reciever' => $email, 'subject' => $subject, 'message' => $message, 'type' => $type]);
-
-            }
-
-        }
-
-        return back()->with('message', 'Email send successfully');
-
+    if ($validate->fails()) {
+        return back()->withErrors($validate->errors())->withInput();
     }
+
+    $groupMembers = AddGroupMember::where('group_id', $request->group)->get();
+
+    foreach ($groupMembers as $member) {
+        
+        switch ($member->type) {
+            case 'Agent':
+                $recipient = AgentModel::find($member->member_id);
+                break;
+            case 'Institution':
+                $recipient = InstitutionModel::find($member->member_id);
+                break;
+            default:
+                $recipient = StudentModel::find($member->member_id);
+                break;
+        }
+
+       
+        if ($recipient) {
+            $senderEmail = $request->senderEmail;
+            $email = $recipient->email;
+            $subject = $request->subject;
+            $message = $request->message;
+            $type = 'admin';
+
+           
+            $details = [
+                'subject' => $subject,
+                'email' => $email,
+                'message' => $message,
+            ];
+
+           
+            Mail::to($email)->send(new SendEmailByAdmin($details));
+
+           
+            $emailModel = EmailModel::create([
+                'sender' => $senderEmail,
+                'receiver' => $email,
+                'subject' => $subject,
+                'message' => $message,
+                'type' => $type
+            ]);
+        }
+    }
+
+    return back()->with('message', 'Emails sent successfully');
+}
 
     public function getgroup()
     {
@@ -2988,7 +2982,7 @@ class AdminController extends Controller
         $message = strip_tags($request->message);
 
         $sms = $request->member;
-        // $message = $request->message;
+      
         $type = 'admin';
 
         if ($request->membertype == 'Agent') {
@@ -3030,7 +3024,7 @@ class AdminController extends Controller
 
                 $url = "http://api.sparrowsms.com/v2/sms/";
 
-                # Make the call using API.
+               
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
                 curl_setopt($ch, CURLOPT_POST, 1);
@@ -3045,6 +3039,7 @@ class AdminController extends Controller
 
         } elseif ($request->membertype == 'Student') {
             $exit = StudentModel::where('phone', $request->member)->first();
+            
             if ($exit->country == 'Australia') {
                 $message = strip_tags($request->message);
                 $text = $message;
@@ -3084,14 +3079,13 @@ class AdminController extends Controller
 
                 $url = "http://api.sparrowsms.com/v2/sms/";
 
-# Make the call using API.
+
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
                 curl_setopt($ch, CURLOPT_POST, 1);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $args);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-// Response
                 $response = curl_exec($ch);
                 $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                 curl_close($ch);
@@ -3102,10 +3096,10 @@ class AdminController extends Controller
                 $message = strip_tags($request->message);
                 $text = $message;
                 $senderphone = '';
-                $url = 'https://cellcast.com.au/api/v3/send-sms'; //API URL
+                $url = 'https://cellcast.com.au/api/v3/send-sms'; 
                 $fields = array(
-                    'sms_text' => $text, //here goes your SMS text
-                    'numbers' => $request->phone, // Your numbers array goes here
+                    'sms_text' => $text, 
+                    'numbers' => $request->phone, 
                 );
                 $headers = array(
                     'APPKEY: CELLCAST2edb4a4745d8822fae2788241d9d604a',
@@ -3150,13 +3144,12 @@ class AdminController extends Controller
                 curl_close($ch);
             }
         }
-        $sms = smsModel::create(['agent_id' => '0', 'sender' => 'studify', 'reciever' => $sms, 'message' => $message, 'type' => $type, 'member_type' => $request->membertype]);
+        $sms = smsModel::create(['agent_id' => '0', 'sender' => 'studify', 'receiver' => $sms, 'message' => $message, 'type' => $type, 'member_type' => $request->membertype]);
         return back()->with('message', 'SMS Send successfully');
     }
 
     public function GroupSmsSend(Request $request)
     {
-
         $validate = Validator::make($request->all(), [
             'phone' => 'required',
             'group' => 'required',
@@ -3165,37 +3158,35 @@ class AdminController extends Controller
             'phone.required' => 'Sender Email  is must required.',
             'group.required' => 'Email  is must required.',
             'message.required' => 'Message is must required.',
-
         ]);
-
+    
         if ($validate->fails()) {
             return back()->withErrors($validate->errors())->withInput();
         }
-
-        $groupss = addSmsGroupMember::where('group_id', $request->group)->get();
+    
+        $groupss = AddSmsGroupMember::where('group_id', $request->group)->get();
+    
         $message = strip_tags($request->message);
-
+    
         foreach ($groupss as $value) {
-
             if ($value->type == "Agent") {
-
                 $agent = AgentModel::find($value->member_id);
-
+    
                 if ($agent->country == 'Australia') {
                     $text = strip_tags($request->message);
-
-                    $url = 'https://cellcast.com.au/api/v3/send-sms'; //API URL
+    
+                    $url = 'https://cellcast.com.au/api/v3/send-sms';
                     $fields = array(
-                        'sms_text' => $text, //here goes your SMS text
-                        'numbers' => $agent->phone, // Your numbers array goes here
+                        'sms_text' => $text,
+                        'numbers' => $agent->phone,
                     );
                     $headers = array(
                         'APPKEY: CELLCAST2edb4a4745d8822fae2788241d9d604a',
                         'Accept: application/json',
                         'Content-Type: application/json',
                     );
-
-                    $ch = curl_init(); //open connection
+    
+                    $ch = curl_init();
                     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
                     curl_setopt($ch, CURLOPT_HEADER, false);
                     curl_setopt($ch, CURLOPT_URL, $url);
@@ -3207,7 +3198,7 @@ class AdminController extends Controller
                         return back()->with('message', 'Sms Not Send successfully');
                     }
                     curl_close($ch);
-
+    
                 } elseif ($agent->country == 'Nepal') {
                     $text = strip_tags($request->message);
                     $args = http_build_query(array(
@@ -3215,49 +3206,44 @@ class AdminController extends Controller
                         'from' => 'Studify',
                         'to' => $agent->phone,
                         'text' => $text));
-
+    
                     $url = "http://api.sparrowsms.com/v2/sms/";
-
-                    # Make the call using API.
+    
                     $ch = curl_init();
                     curl_setopt($ch, CURLOPT_URL, $url);
                     curl_setopt($ch, CURLOPT_POST, 1);
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $args);
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-                    // Response
+    
                     $response = curl_exec($ch);
-
                     $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                     curl_close($ch);
                 }
-
+    
                 $senderEmail = $request->phone;
                 $phone = $agent->phone;
                 $message = $request->message;
                 $type = 'admin';
-
-                $sms = smsModel::create(['sender' => 'studify', 'reciever' => $phone, 'message' => $message, 'type' => $type, 'member_type' => $value->type]);
-
-            } elseif ($value->type == "Insitution") {
-
+    
+                $sms = SmsModel::create(['sender' => 'studify', 'receiver' => $phone, 'message' => $message, 'type' => $type, 'member_type' => $value->type]);
+    
+            } elseif ($value->type == "Institution") {
                 $institution = InstitutionModel::find($value->member_id);
                 if ($institution->country == 'Australia') {
-
                     $text = strip_tags($request->message);
-
-                    $url = 'https://cellcast.com.au/api/v3/send-sms'; //API URL
+    
+                    $url = 'https://cellcast.com.au/api/v3/send-sms'; 
                     $fields = array(
-                        'sms_text' => $text, //here goes your SMS text
-                        'numbers' => $institution->phone, // Your numbers array goes here
+                        'sms_text' => $text, 
+                        'numbers' => $institution->phone, 
                     );
                     $headers = array(
                         'APPKEY: CELLCAST2edb4a4745d8822fae2788241d9d604a',
                         'Accept: application/json',
                         'Content-Type: application/json',
                     );
-
-                    $ch = curl_init(); //open connection
+    
+                    $ch = curl_init();
                     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
                     curl_setopt($ch, CURLOPT_HEADER, false);
                     curl_setopt($ch, CURLOPT_URL, $url);
@@ -3269,8 +3255,8 @@ class AdminController extends Controller
                         return back()->with('message', 'Sms Not Send successfully');
                     }
                     curl_close($ch);
-
-                } elseif ($agent->country == 'Nepal') {
+    
+                } elseif ($institution->country == 'Nepal') {
                     $message = strip_tags($request->message);
                     $text = $message;
                     $args = http_build_query(array(
@@ -3278,49 +3264,45 @@ class AdminController extends Controller
                         'from' => 'Studify',
                         'to' => $institution->phone,
                         'text' => $text));
-
+    
                     $url = "http://api.sparrowsms.com/v2/sms/";
-
-# Make the call using API.
+    
                     $ch = curl_init();
                     curl_setopt($ch, CURLOPT_URL, $url);
                     curl_setopt($ch, CURLOPT_POST, 1);
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $args);
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-// Response
+    
                     $response = curl_exec($ch);
                     $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                     curl_close($ch);
                 }
-
+    
                 $senderEmail = $request->phone;
-                $email = $student->phone;
+                $email = $institution->phone;
                 $message = $request->message;
                 $type = 'admin';
-
-                $sms = smsModel::create(['sender' => 'studify', 'reciever' => $email, 'message' => $message, 'type' => $type, 'member_type' => $value->type]);
-
+    
+                $sms = SmsModel::create(['sender' => 'studify', 'receiver' => $email, 'message' => $message, 'type' => $type, 'member_type' => $value->type]);
+    
             } else {
-
                 $student = StudentModel::find($value->member_id);
-
+    
                 if ($student->country == 'Australia') {
-
                     $text = strip_tags($request->message);
-
-                    $url = 'https://cellcast.com.au/api/v3/send-sms'; //API URL
+    
+                    $url = 'https://cellcast.com.au/api/v3/send-sms'; // API URL for Australia
                     $fields = array(
-                        'sms_text' => $text, //here goes your SMS text
-                        'numbers' => $student->phone, // Your numbers array goes here
+                        'sms_text' => $text,
+                        'numbers' => $student->phone,
                     );
                     $headers = array(
                         'APPKEY: CELLCAST2edb4a4745d8822fae2788241d9d604a',
                         'Accept: application/json',
                         'Content-Type: application/json',
                     );
-
-                    $ch = curl_init(); //open connection
+    
+                    $ch = curl_init();
                     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
                     curl_setopt($ch, CURLOPT_HEADER, false);
                     curl_setopt($ch, CURLOPT_URL, $url);
@@ -3332,43 +3314,41 @@ class AdminController extends Controller
                         return back()->with('message', 'Sms Not Send successfully');
                     }
                     curl_close($ch);
-
-                } elseif ($agent->country == 'Nepal') {
+    
+                } elseif ($student->country == 'Nepal') {
                     $text = strip_tags($request->message);
                     $args = http_build_query(array(
                         'token' => 'v2_6rGUeAJvyBBvRoblqAjw76XlLXS.ZTyB',
                         'from' => 'Studify',
                         'to' => $student->phone,
                         'text' => $text));
-
-                    $url = "http://api.sparrowsms.com/v2/sms/";
-
-# Make the call using API.
+    
+                    $url = "http://api.sparrowsms.com/v2/sms/"; // API URL for Nepal
+    
                     $ch = curl_init();
                     curl_setopt($ch, CURLOPT_URL, $url);
                     curl_setopt($ch, CURLOPT_POST, 1);
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $args);
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-// Response
+    
                     $response = curl_exec($ch);
                     $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                     curl_close($ch);
                 }
-
+    
                 $senderEmail = $request->phone;
                 $email = $student->phone;
                 $message = $request->message;
                 $type = 'admin';
-
-                $sms = smsModel::create(['sender' => 'studify', 'reciever' => $email, 'message' => $message, 'type' => $type, 'member_type' => $value->type]);
-
+    
+                $sms = SmsModel::create(['sender' => 'studify', 'receiver' => $email, 'message' => $message, 'type' => $type, 'member_type' => $value->type]);
+    
             }
         }
+        
         return back()->with('message', 'Sms Send successfully');
-
+    
     }
-
     public function getSmsGroup()
     {
         if (Session::get('adminlogin') != 'loginsuccess') {
