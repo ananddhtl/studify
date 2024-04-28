@@ -60,8 +60,9 @@ class HomeController extends Controller
     public function findAgent(Request $request)
     {
 
-        $allcountry = DB::table('country')->get();
-        $country = DB::table('country')->where('id', $request->country)->first();
+        $allcountry = DB::table('countries')->get();
+
+        $country = DB::table('countries')->where('id', $request->country)->first();
         $state = DB::table('states')->where('id', $request->state)->first();
         $city = DB::table('cities')->where('id', $request->city)->first();
         // $city = DB::table('city')->where('id',$request->city)->first();
