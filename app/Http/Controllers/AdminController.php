@@ -502,37 +502,38 @@ class AdminController extends Controller
     public function addblogs(Request $request)
     {
 
-        {
-            try {
+        // {
+        //     try {
+        //         dd($request->all());
     
-                $request->validate([
-                    'title' => ['required', 'string', 'max:50', 'min:5'],
-                    'description' => ['required', 'string'],
-                    'sub_title' => ['required', 'string','max:300','min:10'],
-                    'thumbnail' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
-                ]);
+        //         $request->validate([
+        //             'title' => ['required', 'string', 'max:50', 'min:5'],
+        //             'description' => ['required', 'string'],
+        //             'sub_title' => ['required', 'string','max:300','min:10'],
+        //             'thumbnail' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+        //         ]);
     
-                $blog = new Blog();
-                $blog->blog_title = $request->title;
-                $blog->sub_title = $request->sub_title;
-                $blog->description = $request->description;
-                if ($request->hasFile('thumbnail')) {
-                    $thumbnail = $request->file('thumbnail');
-                    $img_name = hexdec(uniqid()) . '.' . $thumbnail->getClientOriginalExtension();
-                    $thumbnail->move('uploads/blog/thumbnail/', $img_name);
-                    $save_url = '/uploads/blog/thumbnail/' . $img_name;
+        //         $blog = new Blog();
+        //         $blog->blog_title = $request->title;
+        //         $blog->sub_title = $request->sub_title;
+        //         $blog->description = $request->description;
+        //         if ($request->hasFile('thumbnail')) {
+        //             $thumbnail = $request->file('thumbnail');
+        //             $img_name = hexdec(uniqid()) . '.' . $thumbnail->getClientOriginalExtension();
+        //             $thumbnail->move('uploads/blog/thumbnail/', $img_name);
+        //             $save_url = '/uploads/blog/thumbnail/' . $img_name;
                    
-                    $blog->thumbnail = $save_url;
-                }
-                $blog->save();
-                return redirect('/admin-listblogs')->with('message', 'Your data has been saved successfully');
-            } catch (ValidationException $e) {
-                $errors = $e->validator->errors();
-                return redirect()->back()->withErrors($errors)->withInput();
-            } catch (\Exception $ex) {
-                return $ex->getMessage();
-            }
-        }
+        //             $blog->thumbnail = $save_url;
+        //         }
+        //         $blog->save();
+        //         return redirect('/admin-listblogs')->with('message', 'Your data has been saved successfully');
+        //     } catch (ValidationException $e) {
+        //         $errors = $e->validator->errors();
+        //         return redirect()->back()->withErrors($errors)->withInput();
+        //     } catch (\Exception $ex) {
+        //         return $ex->getMessage();
+        //     }
+        // }
     
 
         $blog_image = '';

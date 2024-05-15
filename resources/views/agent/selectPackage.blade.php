@@ -1,21 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title> Registration packages page</title>
-   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{{asset('assets/style.css')}}">
-    <link rel="icon" type="{{asset('assets/image/png')}}" sizes="60x60" href="{{asset('assets/images/fav.png')}}">
-<link rel="icon" type="{{asset('assets/image/png')}}" sizes="96x96" href="{{asset('assets/images/fav.png')}}">
-<link rel="icon" type="{{asset('assets/image/png')}}" sizes="60x60" href="{{asset('assets/images/fav.png')}}">
-   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+    <title> Registration packages page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/style.css') }}">
+    <link rel="icon" type="{{ asset('assets/image/png') }}" sizes="60x60"
+        href="{{ asset('assets/images/fav.png') }}">
+    <link rel="icon" type="{{ asset('assets/image/png') }}" sizes="96x96"
+        href="{{ asset('assets/images/fav.png') }}">
+    <link rel="icon" type="{{ asset('assets/image/png') }}" sizes="60x60"
+        href="{{ asset('assets/images/fav.png') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,600;0,700;0,800;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -250,7 +256,7 @@ article.couponclass {
 <main class="page-wrapper position-relative">
 
 @include('layout.header')
-@if(session()->has('message'))
+@if (session()->has('message'))
     <div id="successMessage" class="alert alert-success">
         {{ session()->get('message') }}
     </div>
@@ -288,70 +294,70 @@ article.couponclass {
  <div class="col-sm-12" id="Package-box">
 
   <!-- first package div -->
-  @foreach($packages as $package)
-  <div class="col-sm-4" onclick="doWithThisElement({{$package->id}})">
-    <div id="activepackage{{$package->id}}"  onclick="div2({{$package->id}})" class="Package1" >
-      <span class="tik tik{{$package->id}}" id="tik"><img class="click-tik" src="{{asset('assets/images/5291024.png')}}"></span>
-      <h3 data-v-7c4fa3d1="" class="uppercase text-primary-700 text-sm font-bold" style="letter-spacing: 0.1em;">{{$packages[0]->package_name}}</h3>
-      <h4 class="subtitle"> {{$package->package_title}}</h4>
-<p data-v-7c4fa3d1="" class="text-sm">{{$package->package_subtitle}}</p>
+  @foreach ($packages as $package)
+  <div class="col-sm-4" onclick="doWithThisElement({{ $package->id }})">
+    <div id="activepackage{{ $package->id }}"  onclick="div2({{ $package->id }})" class="Package1" >
+      <span class="tik tik{{ $package->id }}" id="tik"><img class="click-tik" src="{{ asset('assets/images/5291024.png') }}"></span>
+      <h3 data-v-7c4fa3d1="" class="uppercase text-primary-700 text-sm font-bold" style="letter-spacing: 0.1em;">{{ $packages[0]->package_name }}</h3>
+      <h4 class="subtitle"> {{ $package->package_title }}</h4>
+<p data-v-7c4fa3d1="" class="text-sm">{{ $package->package_subtitle }}</p>
     <h1 data-v-7c4fa3d1="" class="font-extrabold text-2xl ag-price relative pl-2">
       <span data-v-7c4fa3d1="" class="text-base absolute top-0 left-0">AUD</span>
-      <span data-v-7c4fa3d1="" id="monthly"  class="pl-7 monthly">{{$package->package_monthly}}</span>
-        <span data-v-7c4fa3d1="" id="yearly" class="pl-7 yearly">{{$package->package_yearly}}</span>
+      <span data-v-7c4fa3d1="" id="monthly"  class="pl-7 monthly">{{ $package->package_monthly }}</span>
+        <span data-v-7c4fa3d1="" id="yearly" class="pl-7 yearly">{{ $package->package_yearly }}</span>
         <!----></h1>
       <p data-v-7c4fa3d1="" id="usemonth" class="text-primary-500 text-xs usemonth">/ User per month</p>
       <p data-v-7c4fa3d1="" id="useyear" class="text-primary-500 text-xs useyear">/ User per year</p>
 
-   <?php $packagefeature = App\Models\addPackage::where(['package_id' => $package->id])->where(['type' => '2'])->get();  ?>
+   <?php $packagefeature = App\Models\addPackage::where(['package_id' => $package->id])
+       ->where(['type' => '2'])
+       ->get(); ?>
   
 <ul class="check-element">
-  @foreach($packagefeature as $packagefeatures)
-        @if($packagefeatures->package_feature == 'sms')
+  @foreach ($packagefeature as $packagefeatures)
+        @if ($packagefeatures->package_feature == 'sms')
         <li><i class="fa fa-check-square-o" aria-hidden="true"></i>
         <span data-v-7c4fa3d1="" class="ml-3">SMS Integration</span></li>
         @endif
-         @if($packagefeatures->package_feature == 'email')
+         @if ($packagefeatures->package_feature == 'email')
         <li><i class="fa fa-check-square-o" aria-hidden="true"></i>
         <span data-v-7c4fa3d1="" class="ml-3">Email Integration</span></li>
         @endif
-         @if($packagefeatures->package_feature == 'calender')
+         @if ($packagefeatures->package_feature == 'calender')
         <li><i class="fa fa-check-square-o" aria-hidden="true"></i>
         <span data-v-7c4fa3d1="" class="ml-3">Calendar</span></li>
         @endif
-         @if($packagefeatures->package_feature == 'task')
+         @if ($packagefeatures->package_feature == 'task')
         <li><i class="fa fa-check-square-o" aria-hidden="true"></i>
         <span data-v-7c4fa3d1="" class="ml-3">Tasks</span></li>
          @endif
-         @if($packagefeatures->package_feature == 'rolePermission')
+         @if ($packagefeatures->package_feature == 'rolePermission')
         <li><i class="fa fa-check-square-o" aria-hidden="true"></i>
         <span data-v-7c4fa3d1="" class="ml-3">Role &amp; Permission</span></li>
         @endif
 
-        @if($packagefeatures->package_feature == 'leadManage')
+        @if ($packagefeatures->package_feature == 'leadManage')
         <li><i class="fa fa-check-square-o" aria-hidden="true"></i>
         <span data-v-7c4fa3d1="" class="ml-3">Lead Manger</span></li>
         @endif
 
-        @if($packagefeatures->package_feature == 'documentManage')
+        @if ($packagefeatures->package_feature == 'documentManage')
         <li><i class="fa fa-check-square-o" aria-hidden="true"></i>
         <span data-v-7c4fa3d1="" class="ml-3">Document-Management</span></li>
         @endif
 
-        @if($packagefeatures->package_feature == 'application')
+        @if ($packagefeatures->package_feature == 'application')
         <li><i class="fa fa-check-square-o" aria-hidden="true"></i>
         <span data-v-7c4fa3d1="" class="ml-3">Applications</span></li>
         @endif
-        @if($packagefeatures->package_feature == 'workflow')
+        @if ($packagefeatures->package_feature == 'workflow')
         <li><i class="fa fa-check-square-o" aria-hidden="true"></i>
         <span data-v-7c4fa3d1="" class="ml-3">Workflow</span></li>
         @endif
-        @if($packagefeatures->package_feature == 'news')
+        @if ($packagefeatures->package_feature == 'news')
         <li><i class="fa fa-check-square-o" aria-hidden="true"></i>
         <span data-v-7c4fa3d1="" class="ml-3">News</span></li>
-        @endif
-
-        @endforeach
+        @endif @endforeach
       </ul>
     </div>
   </div>
@@ -365,240 +371,242 @@ article.couponclass {
 
 
 <div class="button-pay">
-<form action="{{url('agent/payment')}}" method="post" >
-  @csrf
-    <input type="hidden" value="" id="duration" name="duration">
+    <form action="{{ url('agent/payment') }}" method="post">
+        @csrf
+        <input type="hidden" value="" id="duration" name="duration">
 
-  <input type="hidden" value="" id="package_idss" name="package_id">
-<a data-toggle="modal" data-target="#applycoupon" id="buttonpay" class="pay">Proceed To Pay</a>
-</form>
-</div>
-                          </div>
+        <input type="hidden" value="" id="package_idss" name="package_id">
+        <a data-toggle="modal" data-target="#applycoupon" id="buttonpay" class="pay">Proceed To Pay</a>
+    </form>
+    </div>
+    </div>
 
 
 
-	</section>
-  
-  <div class="modal fade" id="applycoupon" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content1" style="width: 100%;">
-    <div class="modal-content" id="widthtop" style="width: 100%; margin-left: 10%;">
-        <div class="modal-header">
-      Apply Coupon
+    </section>
 
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          
-        </div>
-        <form action="{{url('agent/payment')}}" method="post" accept-charset="UTF-8" class="card-body w-100 w-xl-700px x-9 fv-plugins-bootstrap5 fv-plugins-framework" id="application_manager_form" novalidate="novalidate" enctype="multipart/form-data">
-            @csrf
-                               <div class="w-100" id="top">
-                 
-                                <div class="row">
-                                  <div class="col-sm-6">
-                       <label><b>Enter Coupon Code</b></label></div>
-                       <div class="col-sm-6"></div>
+    <div class="modal fade" id="applycoupon" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content1" style="width: 100%;">
+                <div class="modal-content" id="widthtop" style="width: 100%; margin-left: 10%;">
+                    <div class="modal-header">
+                        Apply Coupon
 
-                       <div class="col-sm-8">
-                       <input type="hidden" value="" id="duration" name="duration">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-<input type="hidden" value="" id="package_idss" name="package_id"> 
-                       <input type="text" name="couponcode" value="Enter Coupon Code" id="couponcode"><br>
-                       @if($errors->has('couponcode'))
-    <div class="error">{{ $errors->first('couponcode') }}</div>
-@endif
-</div>
-                     
-                      <div class="col-sm-4">
-      <button type="submit" class="package" >Apply Coupon</button>
+                    </div>
+                    <form action="{{ url('agent/payment') }}" method="post" accept-charset="UTF-8"
+                        class="card-body w-100 w-xl-700px x-9 fv-plugins-bootstrap5 fv-plugins-framework"
+                        id="application_manager_form" novalidate="novalidate" enctype="multipart/form-data">
+                        @csrf
+                        <div class="w-100" id="top">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label><b>Enter Coupon Code</b></label>
+                                </div>
+                                <div class="col-sm-6"></div>
+
+                                <div class="col-sm-8">
+                                    <input type="hidden" value="" id="duration" name="duration">
+
+                                    <input type="hidden" value="" id="package_idss" name="package_id">
+                                    <input type="text" name="couponcode" value="Enter Coupon Code"
+                                        id="couponcode"><br>
+                                    @if ($errors->has('couponcode'))
+                                        <div class="error">{{ $errors->first('couponcode') }}</div>
+                                    @endif
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <button type="submit" class="package">Apply Coupon</button>
+                                </div>
+
+                                @foreach ($allcoupon as $allcoupons)
+                                    <div class="col-sm-12"
+                                        onclick="doWithThisElements('{{ $allcoupons->coupon_code }}')">
+                                        <a>
+                                            <article id="couponclass{{ $allcoupons->id }}"
+                                                onclick="activecoupon({{ $allcoupons->id }})" class="couponclass">
+                                                <section class="date">
+                                                    <time datetime="23th feb">
+                                                        @if ($allcoupons->coupon_discount_type == 'Percentage(%)')
+                                                            <span>{{ $allcoupons->coupon_amount }}% OFF</span>
+                                                        @else
+                                                            <span>AUD{{ $allcoupons->coupon_amount }} Flat </span>
+                                                        @endif
+                                                    </time>
+                                                </section>
+                                                <section class="card-cont">
+                                                    <h2>{{ $allcoupons->coupon_code }}</h2>
+                                                    <div class="even-date">
+                                                        <i class="fa fa-calendar"></i>
+
+                                                        <time>
+                                                            @if ($allcoupons->start_date != 0)
+                                                                <span>{{ $allcoupons->start_date }} /
+                                                                    {{ $allcoupons->end_date }}</span>
+                                                            @else
+                                                                <span>All Time Free</span>
+                                                            @endif
+                                                        </time>
+                                                    </div>
+
+
+                                                </section>
+                                            </article>
+                                        </a>
+                                    </div>
+                                @endforeach
+
+                                <div class="col-sm-12">
+
+
+                                    <form action="{{ url('agent/payment') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" value="" id="duration" name="duration">
+
+                                        <input type="hidden" value="" id="package_idss" name="package_id">
+                                        <p class="paysel">if you don't have a coupon code <button type="submit"
+                                                class="package">Click Here</button></p>
+
+                                    </form>
+                                </div>
+
+
+
                             </div>
 
-@foreach($allcoupon as $allcoupons)
-                            <div class="col-sm-12" onclick="doWithThisElements('{{$allcoupons->coupon_code}}')" >
-                            <a ><article id="couponclass{{$allcoupons->id}}" onclick="activecoupon({{$allcoupons->id}})" class="couponclass">
-      <section class="date">
-        <time datetime="23th feb">
-          @if($allcoupons->coupon_discount_type == 'Percentage(%)')
-          <span>{{$allcoupons->coupon_amount}}% OFF</span>
-          @else
-          <span>AUD{{$allcoupons->coupon_amount}} Flat </span>
-          @endif
-        </time>
-      </section>
-      <section class="card-cont">
-      <h2>{{$allcoupons->coupon_code}}</h2>
-        <div class="even-date">
-         <i class="fa fa-calendar"></i>
-       
-         <time>
-       @if($allcoupons->start_date != 0)
-
-           <span>{{$allcoupons->start_date}} / {{$allcoupons->end_date}}</span>
-         
-           @else
- <span>All Time Free</span>
-
-           @endif
-         </time>
+                        </div>
+                        <br>
+                </div> <br>
+                </form>
+            </div>
         </div>
-       
-       
-      </section>
-    </article>
-</a>
- </div>
- @endforeach
+    </div>
+    </div>
 
-<div class="col-sm-12">
+    <script>
+        // Add active class to the current button (highlight it)
+        var header = document.getElementById("Package-box");
+        var btns = header.getElementsByClassName("Package1");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function() {
+                var current = document.getElementsByClassName("active1");
+                current[0].className = current[0].className.replace(" active1", "");
+                this.className += " active1";
+            });
+        }
+    </script>
+    <script>
+        var header = document.getElementById("Package-box1");
+        var btns = header.getElementsByClassName("Package2");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function() {
+                var current = document.getElementsByClassName("active1");
+                current[0].className = current[0].className.replace(" active1", "");
+                this.className += " active1";
+            });
+        }
+    </script>
 
 
-  <form action="{{url('agent/payment')}}" method="post" >
-  @csrf
-  <input type="hidden" value="" id="duration" name="duration">
+    <script src="{{ asset('assets/js/script.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/polyfills.min.js') }}"></script>
 
-<input type="hidden" value="" id="package_idss" name="package_id"> 
-<p class="paysel">if you don't have a coupon code <button type="submit" class="package" >Click Here</button></p>
-
-  </form>
-</div>
-
-
-
-                              </div>
-                           
-                      </div>
-                      <br>
-                  </div> <br>
-                            </form>
-                          </div>
-  </div>
-</div>
- </div>
-
-<script>
-  
-// Add active class to the current button (highlight it)
-var header = document.getElementById("Package-box");
-var btns = header.getElementsByClassName("Package1");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-  var current = document.getElementsByClassName("active1");
-  current[0].className = current[0].className.replace(" active1", "");
-  this.className += " active1";
-  });
-}
-</script>
-<script>
-var header = document.getElementById("Package-box1");
-var btns = header.getElementsByClassName("Package2");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-  var current = document.getElementsByClassName("active1");
-  current[0].className = current[0].className.replace(" active1", "");
-  this.className += " active1";
-  });
-}
-</script>
- 
-
-<script src="{{asset('assets/js/script.bundle.js')}}"></script>
-<script src="{{asset('assets/js/polyfills.min.js')}}"></script>
-
-<!-- Main theme script-->
+    <!-- Main theme script-->
 
 
 
-<script>$(document).ready(function(){
-    $('.customer-logos').slick({
-        slidesToShow: 6,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 1500,
-        arrows: false,
-        dots: false,
-        pauseOnHover: false,
-        responsive: [{
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 4
-            }
-        }, {
-            breakpoint: 520,
-            settings: {
-                slidesToShow: 3
-            }
-        }]
-    });
-});
+    <script>
+        $(document).ready(function() {
+            $('.customer-logos').slick({
+                slidesToShow: 6,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 1500,
+                arrows: false,
+                dots: false,
+                pauseOnHover: false,
+                responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 4
+                    }
+                }, {
+                    breakpoint: 520,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                }]
+            });
+        });
 
-setTimeout(function() {
-        $("#successMessage").hide('blind', {}, 500)
-    }, 5000);
+        setTimeout(function() {
+            $("#successMessage").hide('blind', {}, 500)
+        }, 5000);
+    </script>
 
-</script>
-
-<script type="text/javascript">
- $(document).ready(function () {
-  $('input[name="duration"]').val('Monthly');
-  $( ".tik" ).hide();
-  $( ".tik1" ).hide();
-  $( ".tik2" ).hide();
-   $(".yearly").hide();
-   $(".useyear").hide();
- $check  = $('input[type=radio][name="switchPlan"]').change(function() {
-           if($(this).val() == 'Yearly'){
-              $('input[name="duration"]').val($(this).val());
-             $(".monthly").hide();
-             $(".yearly").show();
-              $(".useyear").show();
-               $(".usemonth").hide();
-           }else{
-           
+    <script type="text/javascript">
+        $(document).ready(function() {
             $('input[name="duration"]').val('Monthly');
-               $(".monthly").show();
-             $(".yearly").hide();
-              $(".useyear").hide();
-              $(".usemonth").show();
-           }
-      
-    });
- 
-  })
+            $(".tik").hide();
+            $(".tik1").hide();
+            $(".tik2").hide();
+            $(".yearly").hide();
+            $(".useyear").hide();
+            $check = $('input[type=radio][name="switchPlan"]').change(function() {
+                if ($(this).val() == 'Yearly') {
+                    $('input[name="duration"]').val($(this).val());
+                    $(".monthly").hide();
+                    $(".yearly").show();
+                    $(".useyear").show();
+                    $(".usemonth").hide();
+                } else {
 
-  function doWithThisElement (id) {
-  
-   $('input[name="package_id"]').val(id);
-    }
+                    $('input[name="duration"]').val('Monthly');
+                    $(".monthly").show();
+                    $(".yearly").hide();
+                    $(".useyear").hide();
+                    $(".usemonth").show();
+                }
 
-    
+            });
 
-     function div2 (id) {
-     var idd = "#activepackage"+id;
-     var tikid = ".tik"+id;
-     $( ".Package1" ).removeClass( 'active1');
-     $(idd).addClass( 'active1');
-      $(".tik").hide();
-      $(tikid).show();
+        })
 
-    }
+        function doWithThisElement(id) {
 
-    function doWithThisElements (id) {
- 
- $('input[name="couponcode"]').val(id);
-  }
-
-
-  function activecoupon (id) {
-  
-   var idd = "#couponclass"+id;
-   $(".couponclass" ).removeClass( 'active');
-    $(idd).addClass( 'active');
- }
+            $('input[name="package_id"]').val(id);
+        }
 
 
 
+        function div2(id) {
+            var idd = "#activepackage" + id;
+            var tikid = ".tik" + id;
+            $(".Package1").removeClass('active1');
+            $(idd).addClass('active1');
+            $(".tik").hide();
+            $(tikid).show();
+
+        }
+
+        function doWithThisElements(id) {
+
+            $('input[name="couponcode"]').val(id);
+        }
 
 
-</script>
+        function activecoupon(id) {
 
-</body>
+            var idd = "#couponclass" + id;
+            $(".couponclass").removeClass('active');
+            $(idd).addClass('active');
+        }
+    </script>
+
+    </body>
+
 </html>

@@ -22,10 +22,10 @@
                                         ])->first();
                                     @endphp
                                     @if ($data)
-                                        <img src="{{ asset('/public/AgentImage/' . $data->agent_image) }}" alt="Logo"
+                                        <img src="{{ asset('AgentImage/' . $data->agent_image) }}" alt="Logo"
                                             style="width: 100px;">
                                     @else
-                                        <img src="{{ asset('/public/AgentImage/noImage.webp') }}" alt="Logo"
+                                        <img src="{{ asset('AgentImage/noImage.webp') }}" alt="Logo"
                                             style="width: 100px;">
                                     @endif
                             </div>
@@ -53,11 +53,10 @@
                                 $datas = App\Models\addInstitution::where(['institution_id' => $data->id])->first();
                             @endphp
                             @if ($datas)
-                                <img src="{{ asset('/public/InstitutionImage/' . $datas->univ_img) }}" alt="Logo"
+                                <img src="{{ asset('InstitutionImage/' . $datas->univ_img) }}" alt="Logo"
                                     style="width: 100px;">
                             @else
-                                <img src="{{ asset('/public/AgentImage/noImage.webp') }}" alt="Logo"
-                                    style="width: 100px;">
+                                <img src="{{ asset('AgentImage/noImage.webp') }}" alt="Logo" style="width: 100px;">
                             @endif
                         </div>
                         <div class="text">
@@ -82,11 +81,10 @@
                             $data = App\Models\StudentModel::where(['phone' => $smsprofiles->reciever])->first();
                         @endphp
                         @if ($data)
-                            <img src="{{ asset('/public/StudentImage/' . $data->student_img) }}" alt="Logo"
+                            <img src="{{ asset('StudentImage/' . $data->student_img) }}" alt="Logo"
                                 style="width: 100px;">
                         @else
-                            <img src="{{ asset('/public/AgentImage/noImage.webp') }}" alt="Logo"
-                                style="width: 100px;">
+                            <img src="{{ asset('AgentImage/noImage.webp') }}" alt="Logo" style="width: 100px;">
                         @endif
             </div>
             <div class="text">

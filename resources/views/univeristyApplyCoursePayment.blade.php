@@ -64,6 +64,7 @@ margin-top: 10px;">
                 <br>
                 @php
                 $univertisyname = App\Models\addInstitution::where(['id' => $insitutionid])->first();
+
                 @endphp
 
                     <b>{{ $univertisyname->universirty_name }}</b>
@@ -209,16 +210,16 @@ margin-top: 10px;">
                             price: price,
                             "_token": "{{ csrf_token() }}"
                         },
-                        success: function(response) { 
+                        success: function(response) {
                             var transactionId = response
-                            .idx; 
+                                .idx;
                             var res = response.response;
                             $.ajax({
                                 type: "POST",
                                 url: "{{ route('khalti.storePayment') }}",
                                 data: {
                                     response: res,
-                                    transactionId: transactionId, 
+                                    transactionId: transactionId,
                                     insitutionid: insitutionid,
                                     courseid: courseid,
                                     price: price,
@@ -227,7 +228,7 @@ margin-top: 10px;">
                                 success: function(res) {
                                     console.log('transaction successful');
                                     window.location.href = "/student/dashboard";
-                                   
+
                                 }
                             });
                             console.log(res);

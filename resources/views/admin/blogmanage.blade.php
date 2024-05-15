@@ -56,7 +56,7 @@
                                     <td style="width:20%;">{{$blogs->blog_heading}}</td>
                                     <?php $bloog = Str::limit($blogs->blog_description, 100, '...'); ?>
                                     <td style="width:20%;">{!!$bloog!!}</td>
-                                    <td style="width:20%;"><img src="{{asset('public/BlogImage/'.$blogs->blog_image)}}"
+                                    <td style="width:20%;"><img src="{{asset('BlogImage/'.$blogs->blog_image)}}"
                                             style="width: 300px; height: 150px"></td>
                                     <td>
 

@@ -428,7 +428,7 @@ class AgentController extends Controller
     {
         $id = Session::get('agent_id');
         $packagetype = AgentModel::where('id', $id)->first();
-        $packagedata = addPackage::where('id', $packagetype->package_id)->first();
+        $packagedata = addPackage::where('id', $packagetype->agent_package_id)->first();
         if ($packagedata->package_monthly == '0') {
             $studentexxit = StudentModel::where('agent_id', $id)->get();
             if ($studentexxit->count() > '2') {
@@ -498,7 +498,7 @@ class AgentController extends Controller
         $password = '';
         $insitution_id = $request->insitution_id;
 
-        $user = StudentModel::create(['agent_id' => $id, 'insitution_id' => $insitution_id, 'first_name' => $first_name, 'last_name' => $last_name, 'phone' => $phone, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'student_img' => $image, 'password' => $password]);
+        $user = StudentModel::create(['agent_id' => $id, 'institution_id' => $insitution_id, 'first_name' => $first_name, 'last_name' => $last_name, 'phone' => $phone, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'student_img' => $image, 'password' => $password]);
 
         $last_student_id = $user->id;
 
@@ -610,6 +610,7 @@ class AgentController extends Controller
         }
 
         $id = Session::get('student_id');
+       
         $student_id = $id;
         $street_name = $request->street_name;
         $city_name = $request->city_name;
@@ -894,10 +895,12 @@ class AgentController extends Controller
         } else {
             $id = Session::get('agent_id');
             $member = AgentModel::where('id', $id)->first();
+          
             if ($member) {
-                $id = $member->package_id;
-                $package = addPackage::where('id', $member->package_id)->first();
-                $packagefeature = addPackage::where('package_id', $member->package_id)->get();
+                $id = $member->agent_package_id;
+              
+                $package = addPackage::where('id', $member->agent_package_id)->first();
+                $packagefeature = addPackage::where('package_id', $member->agent_package_id)->get();
                 $message = '';
                 if ($package) {
                     return view('agent.dashboard', compact('package', 'message', 'id', 'member', 'packagefeature'));
@@ -1151,7 +1154,8 @@ class AgentController extends Controller
                 'other.*' => 'required|min:0|max:5120',
             ]);
         }
-        Session::put('student_id', $request->student_id);
+        
+       
         $resume = '';
         $certificate = '';
 
@@ -1159,7 +1163,7 @@ class AgentController extends Controller
             $image = $request->file('passport');
             $i = 0;
 
-            $student_id = Session::get('student_id');
+            $id = Session::get('student_id');
 
             if ($request->hasfile('passport')) {
                 foreach ($request->file('passport') as $file) {
@@ -1349,9 +1353,9 @@ class AgentController extends Controller
             $agent_profile->swift_code = $request->swift_code;
             $agent_profile->agent_image = $AgentImage;
             $agent_profile->phone = $request->phone;
-            $agent_profile->country = $country->name;
+            $agent_profile->country = $country->country_name;
             $agent_profile->state = $state->name;
-            $agent_profile->city = $city->name;
+            $agent_profile->city = $request->city;
 
             if ($agent_profile->save()) {
 
@@ -1479,7 +1483,9 @@ class AgentController extends Controller
 
     public function payment(Request $request)
     {
+       
 
+      
         $validate = Validator::make($request->all(), [
             'package_id' => 'required',
         ], [
@@ -1513,7 +1519,7 @@ class AgentController extends Controller
 
             $id = Session::get('agent_id');
             $agent_profile = AgentModel::where('id', $id)->first();
-            $agent_profile->package_id = $request->package_id;
+            $agent_profile->agent_package_id = $request->package_id;
             $agent_profile->package_duration = $duration;
             $agent_profile->package_start_date = $startdate;
             $agent_profile->package_end_date = $enddate;
@@ -1521,7 +1527,7 @@ class AgentController extends Controller
             $agent_profile->payment_status = '1';
             $agent_profile->save();
 
-            $course = agentSubscription::create(['agent_id' => $id, 'package_id' => $request->package_id, 'amount' => '0', 'transcation_id' => '0',
+            $course = agentSubscription::create(['agent_id' => $id, 'agent_package_id' => $request->package_id, 'amount' => '0', 'transcation_id' => '0',
                 'payment_status' => '1']);
             $coupondiscount = addCoupon::where('coupon_code', $request->couponcode)->where('coupon_type', 'Academic')->first();
 
@@ -1581,8 +1587,9 @@ class AgentController extends Controller
             $id = Session::get('agent_iddd');
             $id = Session::get('agent_id');
             $agent_profile = AgentModel::where('id', $id)->first();
-            if ($agent_profile->package_id != '0') {
-                $exitpackage = addPackage::where('id', $agent_profile->package_id)->where('type', '1')->first();
+           
+            if ($agent_profile->agent_package_id != '0') {
+                $exitpackage = addPackage::where('id', $agent_profile->agent_package_id)->where('type', '1')->first();
 
                 if ($exitpackage->package_monthly != '0') {
                     $datetime1 = date('Y-m-d H:i:s');
@@ -1596,7 +1603,7 @@ class AgentController extends Controller
                 }
             }
 
-            $agent_profile->package_id = $request->package_id;
+            $agent_profile->agent_package_id = $request->package_id;
             $agent_profile->package_duration = $duration;
             $agent_profile->package_start_date = $startdate;
             $agent_profile->package_end_date = $enddate;

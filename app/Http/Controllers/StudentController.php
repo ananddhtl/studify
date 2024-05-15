@@ -581,6 +581,7 @@ class StudentController extends Controller
     {
         $id = Session::get('student_id');
         $appliedCourse = universityCoursePayment::where('student_id', $id)->get();
+     
         return view('student.dashboard', compact('appliedCourse'));
     }
 

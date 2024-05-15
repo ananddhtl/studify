@@ -49,7 +49,7 @@
 
                             <div class="form-group">
                                 <label class="form-label required">Blog Image</label>
-                                <img src="{{asset('public/BlogImage/'.$blogDetail->blog_image)}}"
+                                <img src="{{asset('BlogImage/'.$blogDetail->blog_image)}}"
                                     style="width: 300px; height: 150px">
                             </div><br>
 

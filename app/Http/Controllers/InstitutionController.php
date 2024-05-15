@@ -1614,6 +1614,7 @@ class InstitutionController extends Controller
             $id = Session::get('institution_id');
            
             $institution = addInstitution::where('institution_id', $id)->first();
+           
             
             if ($institution) {
                 $student = StudentModel::where('institution_id', $institution->id)->get();
@@ -3109,10 +3110,11 @@ class InstitutionController extends Controller
                 'template_description.required' => 'Image  is must required.',
             ]);
             $institution_id = Session::get('institution_id');
+           
             if ($validate->fails()) {
                 return back()->withErrors($validate->errors())->withInput();
             }
-            $addSmsTemplate = addSmsTemplate::create(['insitution_id' => $institution_id, 'add_type' => 'insitution', 'name' => $request->template_name, 'description' => $request->template_description, 'type' => 'sms']);
+            $addSmsTemplate = addSmsTemplate::create(['institution_id' => $institution_id, 'add_type' => 'insitution', 'name' => $request->template_name, 'description' => $request->template_description, 'type' => 'sms']);
             if ($addSmsTemplate) {
                 return back()->with('package', 'Template added successfully');
 

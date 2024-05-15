@@ -35,7 +35,7 @@
                                                 <!--begin::Avatar-->
                                                 <a href="#">
                                                 <div class="symbol symbol-65px symbol-circle ">
-<img src="{{asset('public/InstitutionImage/'.$allinsitutions->univ_img)}}" class="img-responsive" alt="" style="width: 100px; height: 80px;">
+<img src="{{asset('InstitutionImage/'.$allinsitutions->univ_img)}}" class="img-responsive" alt="" style="width: 100px; height: 80px;">
 
 
                                             </a>

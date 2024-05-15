@@ -20,7 +20,7 @@
                             <div class="me-7 mb-4">
                                 <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
 
-                                    <img src="{{ asset('public/AgentImage/' . $agentprofile->agent_image) }}"
+                                    <img src="{{ asset('AgentImage/' . $agentprofile->agent_image) }}"
                                         class="thumb-lg img-circle" alt="">
 
                                 </div>
@@ -213,7 +213,7 @@
                                             <!--begin::Preview existing avatar-->
                                             <img data-toggle="modal" data-target="#exampleModalCenter"
                                                 onclick="onClick(this)"
-                                                src="{{ asset('public/AgentImage/' . $agentprofile->agent_image) }}"
+                                                src="{{ asset('AgentImage/' . $agentprofile->agent_image) }}"
                                                 width="100" height="100" class="thumb-lg img-circle"
                                                 alt="" style="padding-bottom:10px; ">
 
@@ -361,7 +361,7 @@
                                     <!--end::Label-->
                                     <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
-                                        <input id="statessss" name="states" value="{{ $agentprofile->state }}"
+                                        <input id="statessss" name="state" value="{{ $agentprofile->state }}"
                                             class="form-control">
                                         <select id="state-dd" name="state" class="form-control">
                                         </select>
@@ -382,7 +382,7 @@
                                     <!--end::Label-->
                                     <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
-                                        <input id="citiess" name="citys" value="{{ $agentprofile->city }}"
+                                        <input id="citiess" name="city" value="{{ $agentprofile->city }}"
                                             class="form-control">
                                         <select name="city" class="form-control" id="city-dd">
                                         </select>
